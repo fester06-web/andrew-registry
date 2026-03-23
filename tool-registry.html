@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andrew's Tool Registry — Diesel Mechanic Graduate</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --steel: #1a1f2e; --iron: #252b3b; --grease: #0d1017;
+    --chrome: #c8d0e0; --gold: #f5a623; --amber: #ff8c00;
+    --mint: #2ecc71; --dim: #4a5568; --text: #e8ecf4; --muted: #8892a4;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--grease); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+  .page-wrap { position: relative; z-index: 1; }
+
+.hero { background: linear-gradient(160deg,#1a1f2e 0%,#0d1017 60%); border-bottom: 3px solid var(–gold); padding: 60px 24px 50px; text-align: center; position: relative; overflow: hidden; }
+.hero::after { content: ‘⚙’; font-size: 340px; position: absolute; right: -60px; top: -80px; opacity: 0.04; line-height: 1; pointer-events: none; }
+.badge { display: inline-block; background: var(–gold); color: var(–grease); font-family: ‘DM Mono’, monospace; font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; padding: 6px 16px; border-radius: 2px; margin-bottom: 24px; }
+.hero h1 { font-family: ‘Bebas Neue’, sans-serif; font-size: clamp(52px,10vw,96px); letter-spacing: 2px; line-height: 0.95; }
+.hero h1 span { color: var(–gold); }
+.hero-sub { margin-top: 18px; font-size: 17px; font-weight: 300; color: var(–muted); max-width: 500px; margin-inline: auto; line-height: 1.6; }
+.hero-sub strong { color: var(–chrome); font-weight: 500; }
+
+.contribute-box { margin: 36px auto 0; max-width: 560px; background: rgba(245,166,35,.08); border: 1.5px solid rgba(245,166,35,.35); border-radius: 8px; padding: 22px 28px; text-align: left; }
+.contribute-box h3 { font-family: ‘Bebas Neue’, sans-serif; font-size: 20px; letter-spacing: 1px; color: var(–gold); margin-bottom: 12px; }
+.contribute-methods { display: flex; flex-wrap: wrap; gap: 10px; }
+.method-chip { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 20px; padding: 6px 14px; font-size: 13px; font-family: ‘DM Mono’, monospace; color: var(–chrome); }
+.contribute-note { margin-top: 12px; font-size: 12.5px; color: var(–muted); line-height: 1.5; }
+
+.stats-bar { background: var(–iron); border-bottom: 1px solid rgba(255,255,255,.06); padding: 16px 24px; display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
+.stat { text-align: center; }
+.stat-num { font-family: ‘Bebas Neue’, sans-serif; font-size: 28px; color: var(–gold); letter-spacing: 1px; }
+.stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(–muted); font-family: ‘DM Mono’, monospace; }
+
+.filter-row { padding: 28px 24px 16px; display: flex; gap: 10px; flex-wrap: wrap; max-width: 1100px; margin: 0 auto; }
+.filter-btn { background: transparent; border: 1.5px solid rgba(255,255,255,.12); border-radius: 4px; color: var(–muted); font-family: ‘DM Mono’, monospace; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; padding: 7px 16px; cursor: pointer; transition: all .2s; }
+.filter-btn:hover, .filter-btn.active { border-color: var(–gold); color: var(–gold); background: rgba(245,166,35,.07); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(310px,1fr)); gap: 18px; max-width: 1100px; margin: 0 auto; padding: 8px 24px 60px; }
+
+.card { background: var(–iron); border: 1.5px solid rgba(255,255,255,.07); border-radius: 8px; padding: 22px; display: flex; flex-direction: column; gap: 12px; position: relative; transition: border-color .2s, transform .2s; overflow: hidden; }
+.card::before { content: ‘’; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg,var(–gold),var(–amber)); opacity: 0; transition: opacity .2s; }
+.card:not(.sponsored):hover { border-color: rgba(245,166,35,.3); transform: translateY(-2px); }
+.card:not(.sponsored):hover::before { opacity: 1; }
+.card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.tool-name { font-size: 15px; font-weight: 600; line-height: 1.35; color: var(–text); flex: 1; }
+.price-tag { font-family: ‘Bebas Neue’, sans-serif; font-size: 22px; color: var(–gold); letter-spacing: 1px; white-space: nowrap; }
+.category-dot { display: inline-block; font-family: ‘DM Mono’, monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(–muted); margin-bottom: 2px; }
+.card-footer { display: flex; gap: 8px; margin-top: auto; padding-top: 6px; }
+
+.btn-link { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px; background: rgba(255,255,255,.04); border: 1.5px solid rgba(255,255,255,.1); border-radius: 5px; color: var(–chrome); font-size: 12px; font-family: ‘DM Mono’, monospace; text-decoration: none; padding: 9px 12px; transition: all .18s; cursor: pointer; }
+.btn-link:hover { background: rgba(245,166,35,.1); border-color: var(–gold); color: var(–gold); }
+.btn-sponsor { flex: 1.4; background: var(–gold); border: none; border-radius: 5px; color: var(–grease); font-size: 12px; font-weight: 700; font-family: ‘DM Mono’, monospace; letter-spacing: 1px; text-transform: uppercase; padding: 9px 12px; cursor: pointer; transition: all .18s; display: flex; align-items: center; justify-content: center; gap: 6px; }
+.btn-sponsor:hover { background: var(–amber); transform: scale(1.02); }
+
+.card.sponsored { opacity: 0.6; border-color: rgba(46,204,113,.2); }
+.sponsor-badge { font-size: 12px; color: var(–mint); font-family: ‘DM Mono’, monospace; letter-spacing: 0.5px; }
+.card.custom-card { border-color: rgba(245,166,35,.3); background: rgba(245,166,35,.05); }
+.card.custom-card::before { opacity: 1; }
+.custom-desc { font-size: 13px; color: var(–muted); line-height: 1.5; }
+.m-sub { font-size: 11px; color: var(–muted); margin-top: 2px; }
+.amount-input { width: 100%; background: rgba(255,255,255,.05); border: 1.5px solid rgba(255,255,255,.12); border-radius: 6px; color: var(–text); font-family: ‘DM Sans’, sans-serif; font-size: 15px; padding: 12px 14px; margin-bottom: 12px; outline: none; transition: border-color .2s; }
+.amount-input:focus { border-color: var(–gold); }
+.amount-input::placeholder { color: var(–muted); }
+.amount-input.error { border-color: #e74c3c; }
+
+.modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.75); z-index: 100; align-items: center; justify-content: center; padding: 20px; }
+.modal-bg.open { display: flex; }
+.modal { background: var(–iron); border: 1.5px solid rgba(245,166,35,.4); border-radius: 10px; max-width: 460px; width: 100%; padding: 32px; position: relative; }
+.modal h2 { font-family: ‘Bebas Neue’, sans-serif; font-size: 28px; color: var(–gold); letter-spacing: 1px; margin-bottom: 6px; }
+.modal .tool-name-modal { font-size: 14px; color: var(–muted); margin-bottom: 22px; border-bottom: 1px solid rgba(255,255,255,.06); padding-bottom: 16px; }
+.modal-methods { display: flex; flex-direction: column; gap: 12px; margin-bottom: 22px; }
+.modal-method { display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 6px; padding: 14px 16px; }
+.modal-method .m-icon { font-size: 24px; }
+.modal-method .m-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(–muted); font-family: ‘DM Mono’, monospace; margin-bottom: 3px; }
+.modal-method .m-value { font-size: 15px; font-weight: 600; color: var(–text); }
+.modal-note { font-size: 12px; color: var(–muted); line-height: 1.6; background: rgba(245,166,35,.06); border-radius: 5px; padding: 12px 14px; border-left: 3px solid var(–gold); margin-bottom: 16px; }
+.modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(–muted); font-size: 22px; cursor: pointer; transition: color .2s; }
+.modal-close:hover { color: var(–text); }
+
+.name-input { width: 100%; background: rgba(255,255,255,.05); border: 1.5px solid rgba(255,255,255,.12); border-radius: 6px; color: var(–text); font-family: ‘DM Sans’, sans-serif; font-size: 15px; padding: 12px 14px; margin-bottom: 12px; outline: none; transition: border-color .2s; }
+.name-input:focus { border-color: var(–gold); }
+.name-input::placeholder { color: var(–muted); }
+.name-input.error { border-color: #e74c3c; }
+
+.btn-confirm { width: 100%; background: var(–mint); border: none; border-radius: 6px; color: #0d1017; font-family: ‘Bebas Neue’, sans-serif; font-size: 20px; letter-spacing: 2px; padding: 14px; cursor: pointer; transition: opacity .2s; }
+.btn-confirm:hover { opacity: 0.85; }
+.btn-confirm:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.loading-bar { text-align: center; padding: 60px; color: var(–muted); font-family: ‘DM Mono’, monospace; font-size: 13px; letter-spacing: 2px; }
+.page-footer { text-align: center; padding: 24px; font-size: 12px; color: var(–dim); font-family: ‘DM Mono’, monospace; border-top: 1px solid rgba(255,255,255,.05); }
+@media (max-width:600px) { .stats-bar { gap: 28px; } .grid { grid-template-columns: 1fr; } }
+
+/* ── ADMIN ── */
+.admin-trigger { background: none; border: none; color: var(–dim); font-size: 16px; cursor: pointer; padding: 4px 8px; opacity: 0.4; transition: opacity .2s; }
+.admin-trigger:hover { opacity: 1; }
+.admin-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.85); z-index: 200; align-items: flex-start; justify-content: center; padding: 24px; overflow-y: auto; }
+.admin-overlay.open { display: flex; }
+.admin-panel { background: var(–iron); border: 1.5px solid rgba(245,166,35,.4); border-radius: 10px; max-width: 700px; width: 100%; padding: 32px; margin: auto; }
+.admin-panel h2 { font-family: ‘Bebas Neue’, sans-serif; font-size: 32px; color: var(–gold); letter-spacing: 2px; margin-bottom: 6px; }
+.admin-subtitle { font-family: ‘DM Mono’, monospace; font-size: 11px; letter-spacing: 2px; color: var(–muted); margin-bottom: 24px; text-transform: uppercase; }
+.admin-stats { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 28px; }
+.admin-stat { background: rgba(245,166,35,.07); border: 1px solid rgba(245,166,35,.2); border-radius: 6px; padding: 14px 20px; text-align: center; flex: 1; min-width: 100px; }
+.admin-stat-num { font-family: ‘Bebas Neue’, sans-serif; font-size: 32px; color: var(–gold); }
+.admin-stat-label { font-family: ‘DM Mono’, monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(–muted); }
+.admin-section-title { font-family: ‘Bebas Neue’, sans-serif; font-size: 18px; letter-spacing: 1px; color: var(–chrome); margin: 20px 0 10px; border-bottom: 1px solid rgba(255,255,255,.06); padding-bottom: 8px; }
+.admin-row { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.04); }
+.admin-row:last-child { border-bottom: none; }
+.admin-row-icon { font-size: 18px; margin-top: 2px; }
+.admin-row-tool { font-size: 14px; font-weight: 500; color: var(–text); line-height: 1.3; }
+.admin-row-meta { font-size: 12px; color: var(–muted); font-family: ‘DM Mono’, monospace; margin-top: 3px; }
+.admin-row-price { font-family: ‘Bebas Neue’, sans-serif; font-size: 18px; color: var(–gold); margin-left: auto; white-space: nowrap; }
+.admin-empty { font-size: 13px; color: var(–dim); font-style: italic; padding: 12px 0; }
+.admin-close { float: right; background: none; border: none; color: var(–muted); font-size: 24px; cursor: pointer; margin-top: -4px; }
+.admin-close:hover { color: var(–text); }
+.pwd-modal { background: var(–iron); border: 1.5px solid rgba(245,166,35,.4); border-radius: 10px; max-width: 360px; width: 100%; padding: 28px; margin: auto; }
+.pwd-modal h2 { font-family: ‘Bebas Neue’, sans-serif; font-size: 26px; color: var(–gold); margin-bottom: 16px; }
+.pwd-error { font-size: 12px; color: #e74c3c; margin-bottom: 10px; display: none; font-family: ‘DM Mono’, monospace; }
+.btn-remove { background: rgba(192,57,43,.15); border: 1px solid rgba(192,57,43,.4); border-radius: 4px; color: #e74c3c; font-family: ‘DM Mono’, monospace; font-size: 11px; letter-spacing: 1px; padding: 5px 10px; cursor: pointer; transition: all .18s; white-space: nowrap; }
+.btn-remove:hover { background: rgba(192,57,43,.3); }
+</style>
+
+</head>
+<body>
+<div class="page-wrap">
+  <header class="hero">
+    <div class="badge">🎓 Class of 2026 · Diesel Mechanics</div>
+    <h1>Andrew's<br><span>Tool Registry</span></h1>
+    <p class="hero-sub">Andrew just graduated with his degree in <strong>Diesel Mechanics</strong> and is launching his career. Help him build his toolbox — every contribution makes a real difference!</p>
+    <div class="contribute-box">
+      <h3>How to Contribute</h3>
+      <div class="contribute-methods">
+        <div class="method-chip"><span>💸</span> Venmo</div>
+        <div class="method-chip"><span>🍎</span> Apple Pay</div>
+        <div class="method-chip"><span>✉️</span> Check by mail</div>
+        <div class="method-chip"><span>🎁</span> Gift card</div>
+        <div class="method-chip"><span>📞</span> Ask us for details</div>
+      </div>
+      <p class="contribute-note">Pick a tool below and click <strong>Sponsor This</strong> — then reach out to the family for payment details (Venmo, Apple Pay, check, or gift card). Gift cards welcome from: Harbor Freight, Home Depot, Matco Tools, TEKTON, or Channellock.</p>
+    </div>
+  </header>
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num" id="stat-total">—</div><div class="stat-label">Total Items</div></div>
+    <div class="stat"><div class="stat-num" id="stat-sponsored">—</div><div class="stat-label">Sponsored</div></div>
+    <div class="stat"><div class="stat-num">$4,941</div><div class="stat-label">Total Value</div></div>
+    <div class="stat"><div class="stat-num" id="stat-remaining">—</div><div class="stat-label">Still Needed</div></div>
+  </div>
+
+  <div class="filter-row">
+    <button class="filter-btn active" onclick="setFilter('all',this)">All Tools</button>
+    <button class="filter-btn" onclick="setFilter('power',this)">⚡ Power Tools</button>
+    <button class="filter-btn" onclick="setFilter('hand',this)">🔧 Hand Tools</button>
+    <button class="filter-btn" onclick="setFilter('sockets',this)">🔩 Sockets & Drives</button>
+    <button class="filter-btn" onclick="setFilter('storage',this)">🗄️ Storage</button>
+    <button class="filter-btn" onclick="setFilter('pliers',this)">🦾 Pliers</button>
+    <button class="filter-btn" onclick="setFilter('available',this)">🟢 Available</button>
+  </div>
+
+  <div class="grid" id="tool-grid"><div class="loading-bar">LOADING REGISTRY…</div></div>
+  <footer class="page-footer">
+    Made with love for Andrew's big milestone · Diesel Mechanic Graduate 2026
+    <button class="admin-trigger" onclick="openAdminPrompt()" title="Admin">⚙</button>
+  </footer>
+</div>
+
+<!-- PASSWORD PROMPT -->
+
+<div class="admin-overlay" id="pwd-overlay" onclick="closePwdOverlay(event)">
+  <div class="pwd-modal">
+    <h2>Admin Access</h2>
+    <p class="pwd-error" id="pwd-error">Incorrect password — try again</p>
+    <input class="name-input" id="pwd-input" type="password" placeholder="Enter admin password" />
+    <button class="btn-confirm" style="margin-top:4px" onclick="checkPassword()">Enter</button>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+
+<div class="admin-overlay" id="admin-overlay" onclick="closeAdminOverlay(event)">
+  <div class="admin-panel">
+    <button class="admin-close" onclick="document.getElementById('admin-overlay').classList.remove('open')">✕</button>
+    <h2>Admin View</h2>
+    <p class="admin-subtitle">// Registry sponsorship summary</p>
+    <div class="admin-stats">
+      <div class="admin-stat"><div class="admin-stat-num" id="adm-total">—</div><div class="admin-stat-label">Total Items</div></div>
+      <div class="admin-stat"><div class="admin-stat-num" id="adm-sponsored">—</div><div class="admin-stat-label">Sponsored</div></div>
+      <div class="admin-stat"><div class="admin-stat-num" id="adm-collected">—</div><div class="admin-stat-label">Value Collected</div></div>
+      <div class="admin-stat"><div class="admin-stat-num" id="adm-remaining">—</div><div class="admin-stat-label">Still Needed</div></div>
+    </div>
+    <div class="admin-section-title">🎁 Sponsored Tools</div>
+    <div id="adm-tools-list"></div>
+    <div class="admin-section-title">💛 Custom Contributions</div>
+    <div id="adm-custom-list"></div>
+  </div>
+</div>
+
+<!-- MODAL -->
+
+<div class="modal-bg" id="modal" onclick="bgClose(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h2 id="modal-heading">Sponsor This Tool</h2>
+    <p class="tool-name-modal" id="modal-tool-name"></p>
+    <div class="modal-methods">
+      <div class="modal-method"><span class="m-icon">💸</span><div><div class="m-label">Venmo</div><div class="m-value">Ask family for handle</div></div></div>
+      <div class="modal-method"><span class="m-icon">🍎</span><div><div class="m-label">Apple Pay</div><div class="m-value">Ask family for number</div></div></div>
+      <div class="modal-method"><span class="m-icon">✉️</span><div><div class="m-label">Check by Mail</div><div class="m-value">Ask family for mailing address</div></div></div>
+      <div class="modal-method"><span class="m-icon">🎁</span><div><div class="m-label">Gift Card</div><div class="m-value" id="modal-store"></div></div></div>
+    </div>
+    <div class="modal-note" id="modal-note">💬 Suggested amount: <strong id="modal-price"></strong>. After you send your gift, enter your name below — this tool will instantly be marked as sponsored for everyone visiting the page!</div>
+    <input class="amount-input" id="custom-amount" type="number" min="1" placeholder="Your contribution amount (e.g. 25)" style="display:none" oninput="this.classList.remove('error')" />
+    <input class="name-input" id="sponsor-name" type="text" placeholder="Your name (e.g. Aunt Linda)" maxlength="40" oninput="this.classList.remove('error')" />
+    <button class="btn-confirm" id="confirm-btn" onclick="confirmSponsor()">✓ Mark as Sponsored</button>
+  </div>
+</div>
+
+<!-- Firebase SDKs -->
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, onValue, update, push } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAYlmboPABZCkoPamCpOrqXK5pBhaD02yQ",
+  authDomain: "andrew-tool-registry.firebaseapp.com",
+  databaseURL: "https://andrew-tool-registry-default-rtdb.firebaseio.com",
+  projectId: "andrew-tool-registry",
+  storageBucket: "andrew-tool-registry.firebasestorage.app",
+  messagingSenderId: "491054479188",
+  appId: "1:491054479188:web:cf97e7418d8cf3aade7ac1",
+  measurementId: "G-TR9X5X6883"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const sponsorshipsRef = ref(db, 'sponsorships');
+
+const tools = [
+  { name: "Milwaukee M12 FUEL 3/8\" Electric Ratchet Kit", price: 172, category: "power", url: "https://www.homedepot.com/p/Milwaukee-M12-FUEL-12V-Lithium-Ion-Brushless-Cordless-3-8-in-Ratchet-Kit-with-2-2-0Ah-Batteries-Charger-Tool-Bag-2557-22/302616673", store: "Home Depot" },
+  { name: "Milwaukee M12 FUEL Stubby 3/8\" Impact Wrench", price: 250, category: "power", url: "https://www.homedepot.com/p/Milwaukee-M12-FUEL-12V-Lithium-Ion-Brushless-Cordless-Stubby-3-8-in-Impact-Wrench-Tool-Only-2562-20/330184776", store: "Home Depot" },
+  { name: "Harbor Freight 3/4\" Composite Air Impact Wrench (1800 ft-lbs)", price: 250, category: "power", url: "https://www.harborfreight.com/34-in-composite-air-impact-wrench-twin-hammer-1800-ft-lbs-70598.html", store: "Harbor Freight" },
+  { name: "Harbor Freight 1/2\" Stubby Air Impact Wrench (700 ft-lbs)", price: 80, category: "power", url: "https://www.harborfreight.com/12-in-stubby-air-impact-wrench-jumbo-hammer-700-ft-lbs-63534.html", store: "Harbor Freight" },
+  { name: "Icon 56\" x 22\" Roll Cabinet — Series 3, Green", price: 900, category: "storage", url: "https://www.harborfreight.com/56-in-x-22-in-roll-cab-series-3-green-70346.html", store: "Harbor Freight" },
+  { name: "Icon Metric Combination Wrenches", price: 129, category: "hand", url: "#", store: "Harbor Freight" },
+  { name: "Icon Standard Combination Wrenches", price: 129, category: "hand", url: "#", store: "Harbor Freight" },
+  { name: "Icon Metric Ratcheting Wrenches", price: 170, category: "hand", url: "#", store: "Harbor Freight" },
+  { name: "Icon Standard Ratcheting Wrenches", price: 170, category: "hand", url: "#", store: "Harbor Freight" },
+  { name: "Mayhew Dominator 3-Piece Pry Bar Set", price: 60, category: "hand", url: "https://www.homedepot.com/p/Mayhew-Dominator-Pry-Bar-Set-3-Piece-61355/203353843", store: "Home Depot" },
+  { name: "Matco 3-Piece Electronic Torque Wrench Set (1/4, 3/8, 1/2\")", price: 790, category: "hand", url: "https://www.matcotools.com/catalog/product/setw3p/3-piece-electronic-torque-wrench-set-purple", store: "Matco Tools" },
+  { name: "Quinn 15-Piece Screwdriver Set", price: 30, category: "hand", url: "https://www.harborfreight.com/premium-screwdriver-set-15-piece-64549.html", store: "Harbor Freight" },
+  { name: "3 lb Steel Drilling Hammer", price: 18, category: "hand", url: "https://www.harborfreight.com/3-lb-steel-drilling-hammer-70057.html", store: "Harbor Freight" },
+  { name: "5 lb Dead Blow Hammer", price: 15, category: "hand", url: "https://www.harborfreight.com/5-lb-neon-orange-dead-blow-hammer-59487.html", store: "Harbor Freight" },
+  { name: "3-Piece 3/8\" Impact Wobble Extension Set", price: 16, category: "sockets", url: "https://www.harborfreight.com/3-piece-3-8-eighth-inch-drive-impact-wobble-socket-extension-set-67065.html", store: "Harbor Freight" },
+  { name: "3-Piece 1/2\" Impact Extension Set", price: 12, category: "sockets", url: "https://www.harborfreight.com/3-piece-3-8-eighth-inch-drive-impact-wobble-socket-extension-set-67065.html", store: "Harbor Freight" },
+  { name: "9-Piece Chrome Wobble Extension Set", price: 16, category: "sockets", url: "https://www.harborfreight.com/wobble-socket-extension-set-9-piece-67971.html", store: "Harbor Freight" },
+  { name: "CTA Tools 4-Piece Oil Filter Wrench Set", price: 63, category: "hand", url: "https://www.jbtools.com/cta-tools-4325-4-pc-oil-filter-wrench-set-with-stand/", store: "JB Tool Sales" },
+  { name: "Impact Socket Set — Deep & Shallow Standard", price: 32, category: "sockets", url: "#", store: "Harbor Freight" },
+  { name: "Impact Socket Set — Metric", price: 32, category: "sockets", url: "https://www.harborfreight.com/12-in-drive-metric-impact-socket-set-13-piece-70086.html", store: "Harbor Freight" },
+  { name: "TEKTON 3/8\" Drive 68-Piece Chrome Socket Set", price: 175, category: "sockets", url: "https://www.tekton.com/3-8-inch-drive-shallow-and-deep-6-point-socket-set-68-piece-shd91220", store: "TEKTON" },
+  { name: "TEKTON 1/4\" Drive 50-Piece Chrome Socket Set", price: 105, category: "sockets", url: "https://www.tekton.com/1-4-inch-drive-shallow-and-deep-6-point-socket-set-50-piece-shd90215", store: "TEKTON" },
+  { name: "TEKTON 1/2\" Drive 52-Piece Chrome Socket Set", price: 210, category: "sockets", url: "https://www.tekton.com/1-2-inch-drive-shallow-and-deep-6-point-socket-set-52-piece-shd92213", store: "TEKTON" },
+  { name: "Harbor Freight 3-Piece Heel/Pry Bar Set", price: 10, category: "hand", url: "https://www.harborfreight.com/pry-bar-set-3-piece-68339.html", store: "Harbor Freight" },
+  { name: "1/4, 3/8, 1/2\" Low-Profile Ratchet Set", price: 121, category: "hand", url: "https://www.harborfreight.com/38-in-drive-professional-low-profile-ratchet-56193.html", store: "Harbor Freight" },
+  { name: "G2 1/2\" Drive 26\" Extra-Long Ratchet", price: 75, category: "hand", url: "https://www.harborfreight.com/g2-12-in-drive-26-in-extra-long-ratchet-with-comfort-grip-70436.html", store: "Harbor Freight" },
+  { name: "TEKTON 3/8\" Drive 12-Piece U-Joint Impact Socket Set", price: 130, category: "sockets", url: "https://www.tekton.com/3-8-inch-drive-shallow-universal-joint-impact-socket-set-12-piece-sid97102", store: "TEKTON" },
+  { name: "Pistol-Grip Grease Gun", price: 20, category: "hand", url: "https://www.harborfreight.com/pistol-grip-grease-gun-70702.html", store: "Harbor Freight" },
+  { name: "Milwaukee 600-Lumen USB Headlamp", price: 77, category: "hand", url: "https://www.homedepot.com/p/Milwaukee-600-Lumens-LED-REDLITHIUM-USB-Low-Profile-Hard-Hat-Headlamp-2115-21/309838628", store: "Home Depot" },
+  { name: "12-Piece Cold Chisel & Punch Set", price: 15, category: "hand", url: "https://www.harborfreight.com/12-piece-cold-chisel-and-punch-set-66440.html", store: "Harbor Freight" },
+  { name: "Channellock 3-Piece Tongue & Groove Plier Set", price: 56, category: "pliers", url: "https://shop.channellock.com/products/gs-3", store: "Channellock" },
+  { name: "8\" Slip Joint Pliers", price: 8, category: "pliers", url: "https://www.harborfreight.com/8-in-slip-joint-pliers-64562.html", store: "Harbor Freight" },
+  { name: "10\" Curved Jaw Locking Pliers (Vice Grips)", price: 12, category: "pliers", url: "https://www.harborfreight.com/10-in-curved-jaw-locking-pliers-63869.html", store: "Harbor Freight" },
+  { name: "Radiator Hose Pinch-Off Pliers (x2)", price: 25, category: "pliers", url: "https://www.harborfreight.com/radiator-hose-pinch-off-pliers-99704.html", store: "Harbor Freight" },
+  { name: "Channellock 9.5\" Curved Diagonal Cutting Pliers (Dykes)", price: 36, category: "pliers", url: "https://shop.channellock.com/products/449", store: "Channellock" },
+  { name: "Channellock 8\" Long Nose / Needle Nose Pliers", price: 29, category: "pliers", url: "#", store: "Channellock" },
+  { name: "3-Piece Long Reach Hose Grip Pliers", price: 14, category: "pliers", url: "https://www.harborfreight.com/3-piece-long-reach-hose-grip-pliers-37909.html", store: "Harbor Freight" },
+  { name: "Pistol-Grip Self-Adjusting Wire Stripper & Cutter", price: 15, category: "hand", url: "https://www.harborfreight.com/pistol-grip-self-adjusting-wire-stripper-and-cutter-59729.html", store: "Harbor Freight" },
+  { name: "Wheel Chocks with Eyebolt", price: 28, category: "hand", url: "https://www.harborfreight.com/wheel-chock-with-eyebolt-69828.html", store: "Harbor Freight" },
+  { name: "Butane Micro Torch", price: 15, category: "hand", url: "https://www.harborfreight.com/butane-micro-torch-63170.html", store: "Harbor Freight" },
+  { name: "32-Piece Feeler Gauge", price: 5, category: "hand", url: "https://www.harborfreight.com/feeler-gauge-32-piece-63665.html", store: "Harbor Freight" },
+  { name: "6-Piece Radiator Hose Pick Set", price: 58, category: "hand", url: "https://www.harborfreight.com/professional-radiator-hose-pick-set-6-piece-57573.html", store: "Harbor Freight" },
+  { name: "Extendable Comfort-Grip Scraper", price: 9, category: "hand", url: "https://www.harborfreight.com/extendable-comfort-grip-scraper-59128.html", store: "Harbor Freight" },
+  { name: "GEARWRENCH 6-Piece Metric Flex Flare Nut Wrench Set", price: 77, category: "hand", url: "https://www.homedepot.com/p/GEARWRENCH-Metric-Flex-Flare-Metric-Nut-Wrench-Set-6-Piece-81911D/202739134", store: "Home Depot" },
+  { name: "GEARWRENCH 6-Piece Standard Flex Flare Nut Wrench Set", price: 75, category: "hand", url: "#", store: "Home Depot" },
+  { name: "Matco 5-Piece Double Box Flex Ratcheting Wrench Set", price: 175, category: "hand", url: "https://www.matcotools.com/catalog/product/srwfxlm52t/5-piece-reversible-double-box-flex-ratcheting-wrench-set", store: "Matco Tools" },
+];
+
+const catLabel = { power:'⚡ Power', hand:'🔧 Hand Tool', sockets:'🔩 Sockets', storage:'🗄️ Storage', pliers:'🦾 Pliers' };
+const CUSTOM_IDX = 9999; // special index for custom contributions
+let sponsorships = {}; // live from Firebase
+let pendingSave = null; // data staged before save()
+let currentFilter = 'all';
+let activeIdx = null;
+let isCustom = false;
+let busy = false;
+
+// Listen to Firebase in real time — updates for ALL visitors instantly
+function load() {
+  document.getElementById('tool-grid').innerHTML = '<div class="loading-bar">LOADING REGISTRY…</div>';
+  onValue(sponsorshipsRef, (snapshot) => {
+    sponsorships = snapshot.val() || {};
+    render();
+  });
+}
+
+async function save() {
+  if (isCustom) {
+    // Custom contributions: push a new child entry (they stack)
+    const customRef = ref(db, 'sponsorships/custom');
+    await push(customRef, pendingSave);
+  } else {
+    // Tool sponsorships: write to specific index key
+    const updates = {};
+    updates['sponsorships/' + activeIdx] = pendingSave;
+    await update(ref(db), updates);
+  }
+}
+
+function render() {
+  const grid = document.getElementById('tool-grid');
+  grid.innerHTML = '';
+  let shown = 0;
+
+  // Custom contribution card
+  if (currentFilter === 'all' || currentFilter === 'available') {
+    const customCard = document.createElement('div');
+    customCard.className = 'card custom-card';
+    customCard.style.animationDelay = '0ms';
+    customCard.innerHTML = `
+      <div class="category-dot">💛 Any Amount</div>
+      <div class="card-header">
+        <div class="tool-name">Contribute a Custom Amount</div>
+        <div class="price-tag">You Pick</div>
+      </div>
+      <div class="custom-desc">Can't sponsor a full tool? Any amount helps Andrew build his toolbox. Every dollar counts toward his career!</div>
+      <div class="card-footer">
+        <button class="btn-sponsor" onclick="openCustomModal()" style="flex:1">🎁 Contribute Any Amount</button>
+      </div>`;
+    grid.appendChild(customCard);
+    shown++;
+  }
+
+  tools.forEach((t, i) => {
+    const sp = sponsorships[String(i)];
+    if (currentFilter === 'available' && sp) return;
+    if (currentFilter !== 'all' && currentFilter !== 'available' && t.category !== currentFilter) return;
+    shown++;
+    const card = document.createElement('div');
+    card.className = 'card' + (sp ? ' sponsored' : '');
+    card.style.animationDelay = (shown * 25) + 'ms';
+    const hasLink = t.url && t.url !== '#';
+    card.innerHTML = `
+      <div class="category-dot">${catLabel[t.category] || t.category}</div>
+      <div class="card-header">
+        <div class="tool-name">${t.name}</div>
+        <div class="price-tag">$${t.price.toLocaleString()}</div>
+      </div>
+      ${sp ? `<div class="sponsor-badge">\u2713 Sponsored by ${sp.name}</div>` : ''}
+      <div class="card-footer">
+        ${hasLink ? `<a class="btn-link" href="${t.url}" target="_blank">\ud83d\udd17 View</a>` : ''}
+        ${!sp ? `<button class="btn-sponsor" onclick="openModal(${i})">\ud83c\udf81 Sponsor This</button>` : ''}
+      </div>`;
+    grid.appendChild(card);
+  });
+
+  const toolSponsors = Object.keys(sponsorships).filter(k => k !== 'custom').length;
+  const remaining = tools.reduce((s,t,i) => s + (sponsorships[i] ? 0 : t.price), 0);
+  document.getElementById('stat-total').textContent = tools.length;
+  document.getElementById('stat-sponsored').textContent = toolSponsors;
+  document.getElementById('stat-remaining').textContent = '$' + remaining.toLocaleString();
+}
+
+function setFilter(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function openModal(idx) {
+  isCustom = false;
+  activeIdx = idx;
+  const t = tools[idx];
+  document.getElementById('modal-heading').textContent = 'Sponsor This Tool';
+  document.getElementById('modal-tool-name').textContent = t.name + ' — $' + t.price;
+  document.getElementById('modal-note').innerHTML = '\ud83d\udcac Suggested amount: <strong>' + '$' + t.price + '</strong>. After you send your gift, enter your name below — this tool will instantly be marked as sponsored for everyone visiting the page!';
+  document.getElementById('modal-store').textContent = t.store + ' gift card';
+  document.getElementById('custom-amount').style.display = 'none';
+  document.getElementById('custom-amount').value = '';
+  document.getElementById('sponsor-name').value = '';
+  document.getElementById('sponsor-name').classList.remove('error');
+  const btn = document.getElementById('confirm-btn');
+  btn.disabled = false;
+  btn.textContent = '\u2713 Mark as Sponsored';
+  document.getElementById('modal').classList.add('open');
+  setTimeout(() => document.getElementById('sponsor-name').focus(), 100);
+}
+
+function openCustomModal() {
+  isCustom = true;
+  activeIdx = CUSTOM_IDX;
+  document.getElementById('modal-heading').textContent = 'Contribute Any Amount';
+  document.getElementById('modal-tool-name').textContent = 'Custom contribution toward Andrew\'s toolbox';
+  document.getElementById('modal-note').innerHTML = '\ud83d\udcac Enter any amount you\'d like to contribute — every dollar helps! Send via any method below, then enter your name to be recognized.';
+  document.getElementById('modal-store').textContent = 'Harbor Freight / Home Depot gift card';
+  document.getElementById('custom-amount').style.display = 'block';
+  document.getElementById('custom-amount').value = '';
+  document.getElementById('custom-amount').classList.remove('error');
+  document.getElementById('sponsor-name').value = '';
+  document.getElementById('sponsor-name').classList.remove('error');
+  const btn = document.getElementById('confirm-btn');
+  btn.disabled = false;
+  btn.textContent = '\u2713 Record My Contribution';
+  document.getElementById('modal').classList.add('open');
+  setTimeout(() => document.getElementById('custom-amount').focus(), 100);
+}
+
+function closeModal() { document.getElementById('modal').classList.remove('open'); activeIdx = null; }
+function bgClose(e) { if (e.target.id === 'modal') closeModal(); }
+
+async function confirmSponsor() {
+  const nameEl = document.getElementById('sponsor-name');
+  const name = nameEl.value.trim();
+  let amount = null;
+
+  if (isCustom) {
+    const amountEl = document.getElementById('custom-amount');
+    amount = parseFloat(amountEl.value);
+    if (!amount || amount <= 0) { amountEl.classList.add('error'); amountEl.focus(); return; }
+  }
+
+  if (!name) { nameEl.classList.add('error'); nameEl.focus(); return; }
+  if (busy || activeIdx === null) return;
+  busy = true;
+  const btn = document.getElementById('confirm-btn');
+  btn.disabled = true;
+  btn.textContent = 'Saving…';
+
+  if (isCustom) {
+    pendingSave = { name, amount, date: new Date().toISOString() };
+  } else {
+    pendingSave = { name, date: new Date().toISOString() };
+  }
+
+  await save();
+  busy = false;
+  closeModal();
+  // No need to call render() — onValue listener fires automatically after Firebase write
+}
+
+// ── ADMIN ──
+const ADMIN_PASSWORD = 'schrock2026'; // Change this to your preferred password
+
+function openAdminPrompt() {
+  document.getElementById('pwd-input').value = '';
+  document.getElementById('pwd-error').style.display = 'none';
+  document.getElementById('pwd-overlay').classList.add('open');
+  setTimeout(() => document.getElementById('pwd-input').focus(), 100);
+}
+
+function checkPassword() {
+  const val = document.getElementById('pwd-input').value;
+  if (val === ADMIN_PASSWORD) {
+    document.getElementById('pwd-overlay').classList.remove('open');
+    openAdminPanel();
+  } else {
+    document.getElementById('pwd-error').style.display = 'block';
+    document.getElementById('pwd-input').value = '';
+    document.getElementById('pwd-input').focus();
+  }
+}
+
+function openAdminPanel() {
+  const toolSponsors = Object.entries(sponsorships).filter(([k]) => !k.startsWith('custom'));
+  const customEntries = sponsorships.custom ? Object.entries(sponsorships.custom) : [];
+  const collectedFromTools = toolSponsors.reduce((s, [k]) => s + (tools[Number(k)] ? tools[Number(k)].price : 0), 0);
+  const collectedFromCustom = customEntries.reduce((s, [,e]) => s + (e.amount || 0), 0);
+  const totalCollected = collectedFromTools + collectedFromCustom;
+  const remaining = tools.reduce((s, t, i) => s + (sponsorships[String(i)] ? 0 : t.price), 0);
+
+  document.getElementById('adm-total').textContent = tools.length;
+  document.getElementById('adm-sponsored').textContent = toolSponsors.length;
+  document.getElementById('adm-collected').textContent = '$' + totalCollected.toLocaleString();
+  document.getElementById('adm-remaining').textContent = '$' + remaining.toLocaleString();
+
+  // Tool sponsorships
+  const toolsList = document.getElementById('adm-tools-list');
+  if (toolSponsors.length === 0) {
+    toolsList.innerHTML = '<div class="admin-empty">No tools sponsored yet.</div>';
+  } else {
+    toolsList.innerHTML = toolSponsors.map(([k, sp]) => {
+      const t = tools[Number(k)];
+      if (!t) return '';
+      const d = new Date(sp.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      return `<div class="admin-row">
+        <div class="admin-row-icon">✅</div>
+        <div style="flex:1">
+          <div class="admin-row-tool">${t.name}</div>
+          <div class="admin-row-meta">Sponsored by <strong>${sp.name}</strong> · ${d}</div>
+        </div>
+        <div class="admin-row-price">$${t.price}</div>
+        <button class="btn-remove" onclick="removeSponsorship('${k}')">Remove</button>
+      </div>`;
+    }).join('');
+  }
+
+  // Custom contributions
+  const customList = document.getElementById('adm-custom-list');
+  if (customEntries.length === 0) {
+    customList.innerHTML = '<div class="admin-empty">No custom contributions yet.</div>';
+  } else {
+    customList.innerHTML = customEntries.map(([ck, e]) => {
+      const d = new Date(e.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      return `<div class="admin-row">
+        <div class="admin-row-icon">💛</div>
+        <div style="flex:1">
+          <div class="admin-row-tool">Custom Contribution</div>
+          <div class="admin-row-meta">From <strong>${e.name}</strong> · ${d}</div>
+        </div>
+        <div class="admin-row-price">$${e.amount || '?'}</div>
+        <button class="btn-remove" onclick="removeCustom('${ck}')">Remove</button>
+      </div>`;
+    }).join('');
+  }
+
+  document.getElementById('admin-overlay').classList.add('open');
+}
+
+async function removeSponsorship(key) {
+  if (!confirm('Remove this sponsorship?')) return;
+  const updates = {};
+  updates['sponsorships/' + key] = null;
+  await update(ref(db), updates);
+  openAdminPanel(); // refresh panel
+}
+
+async function removeCustom(key) {
+  if (!confirm('Remove this contribution?')) return;
+  const updates = {};
+  updates['sponsorships/custom/' + key] = null;
+  await update(ref(db), updates);
+  openAdminPanel(); // refresh panel
+}
+
+function closePwdOverlay(e) { if (e.target.id === 'pwd-overlay') document.getElementById('pwd-overlay').classList.remove('open'); }
+function closeAdminOverlay(e) { if (e.target.id === 'admin-overlay') document.getElementById('admin-overlay').classList.remove('open'); }
+
+// Allow Enter key on password field
+document.getElementById('pwd-input').addEventListener('keydown', e => { if (e.key === 'Enter') checkPassword(); });
+
+// Expose functions to global scope (required when using type="module")
+window.setFilter = setFilter;
+window.openModal = openModal;
+window.openCustomModal = openCustomModal;
+window.closeModal = closeModal;
+window.bgClose = bgClose;
+window.confirmSponsor = confirmSponsor;
+window.openAdminPrompt = openAdminPrompt;
+window.checkPassword = checkPassword;
+window.closePwdOverlay = closePwdOverlay;
+window.closeAdminOverlay = closeAdminOverlay;
+window.removeSponsorship = removeSponsorship;
+window.removeCustom = removeCustom;
+
+load();
+</script>
+
+</body>
+</html>
