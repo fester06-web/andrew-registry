@@ -93,6 +93,32 @@
   .loading-bar { text-align: center; padding: 60px; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 2px; }
   .page-footer { text-align: center; padding: 24px; font-size: 12px; color: var(--dim); font-family: 'DM Mono', monospace; border-top: 1px solid rgba(255,255,255,.05); }
   @media (max-width:600px) { .stats-bar { gap: 28px; } .grid { grid-template-columns: 1fr; } }
+
+  /* ── ADMIN ── */
+  .admin-trigger { background: none; border: none; color: var(--dim); font-size: 16px; cursor: pointer; padding: 4px 8px; opacity: 0.4; transition: opacity .2s; }
+  .admin-trigger:hover { opacity: 1; }
+  .admin-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.85); z-index: 200; align-items: flex-start; justify-content: center; padding: 24px; overflow-y: auto; }
+  .admin-overlay.open { display: flex; }
+  .admin-panel { background: var(--iron); border: 1.5px solid rgba(245,166,35,.4); border-radius: 10px; max-width: 700px; width: 100%; padding: 32px; margin: auto; }
+  .admin-panel h2 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--gold); letter-spacing: 2px; margin-bottom: 6px; }
+  .admin-subtitle { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; color: var(--muted); margin-bottom: 24px; text-transform: uppercase; }
+  .admin-stats { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 28px; }
+  .admin-stat { background: rgba(245,166,35,.07); border: 1px solid rgba(245,166,35,.2); border-radius: 6px; padding: 14px 20px; text-align: center; flex: 1; min-width: 100px; }
+  .admin-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--gold); }
+  .admin-stat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+  .admin-section-title { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 1px; color: var(--chrome); margin: 20px 0 10px; border-bottom: 1px solid rgba(255,255,255,.06); padding-bottom: 8px; }
+  .admin-row { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.04); }
+  .admin-row:last-child { border-bottom: none; }
+  .admin-row-icon { font-size: 18px; margin-top: 2px; }
+  .admin-row-tool { font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.3; }
+  .admin-row-meta { font-size: 12px; color: var(--muted); font-family: 'DM Mono', monospace; margin-top: 3px; }
+  .admin-row-price { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--gold); margin-left: auto; white-space: nowrap; }
+  .admin-empty { font-size: 13px; color: var(--dim); font-style: italic; padding: 12px 0; }
+  .admin-close { float: right; background: none; border: none; color: var(--muted); font-size: 24px; cursor: pointer; margin-top: -4px; }
+  .admin-close:hover { color: var(--text); }
+  .pwd-modal { background: var(--iron); border: 1.5px solid rgba(245,166,35,.4); border-radius: 10px; max-width: 360px; width: 100%; padding: 28px; margin: auto; }
+  .pwd-modal h2 { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--gold); margin-bottom: 16px; }
+  .pwd-error { font-size: 12px; color: #e74c3c; margin-bottom: 10px; display: none; font-family: 'DM Mono', monospace; }
 </style>
 </head>
 <body>
@@ -132,7 +158,39 @@
   </div>
 
   <div class="grid" id="tool-grid"><div class="loading-bar">LOADING REGISTRY…</div></div>
-  <footer class="page-footer">Made with love for Andrew's big milestone · Diesel Mechanic Graduate 2026</footer>
+  <footer class="page-footer">
+    Made with love for Andrew's big milestone · Diesel Mechanic Graduate 2026
+    <button class="admin-trigger" onclick="openAdminPrompt()" title="Admin">⚙</button>
+  </footer>
+</div>
+
+<!-- PASSWORD PROMPT -->
+<div class="admin-overlay" id="pwd-overlay" onclick="closePwdOverlay(event)">
+  <div class="pwd-modal">
+    <h2>Admin Access</h2>
+    <p class="pwd-error" id="pwd-error">Incorrect password — try again</p>
+    <input class="name-input" id="pwd-input" type="password" placeholder="Enter admin password" />
+    <button class="btn-confirm" style="margin-top:4px" onclick="checkPassword()">Enter</button>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="admin-overlay" id="admin-overlay" onclick="closeAdminOverlay(event)">
+  <div class="admin-panel">
+    <button class="admin-close" onclick="document.getElementById('admin-overlay').classList.remove('open')">✕</button>
+    <h2>Admin View</h2>
+    <p class="admin-subtitle">// Registry sponsorship summary</p>
+    <div class="admin-stats">
+      <div class="admin-stat"><div class="admin-stat-num" id="adm-total">—</div><div class="admin-stat-label">Total Items</div></div>
+      <div class="admin-stat"><div class="admin-stat-num" id="adm-sponsored">—</div><div class="admin-stat-label">Sponsored</div></div>
+      <div class="admin-stat"><div class="admin-stat-num" id="adm-collected">—</div><div class="admin-stat-label">Value Collected</div></div>
+      <div class="admin-stat"><div class="admin-stat-num" id="adm-remaining">—</div><div class="admin-stat-label">Still Needed</div></div>
+    </div>
+    <div class="admin-section-title">🎁 Sponsored Tools</div>
+    <div id="adm-tools-list"></div>
+    <div class="admin-section-title">💛 Custom Contributions</div>
+    <div id="adm-custom-list"></div>
+  </div>
 </div>
 
 <!-- MODAL -->
@@ -386,6 +444,88 @@ async function confirmSponsor() {
   // No need to call render() — onValue listener fires automatically after Firebase write
 }
 
+// ── ADMIN ──
+const ADMIN_PASSWORD = 'schrock2026'; // Change this to your preferred password
+
+function openAdminPrompt() {
+  document.getElementById('pwd-input').value = '';
+  document.getElementById('pwd-error').style.display = 'none';
+  document.getElementById('pwd-overlay').classList.add('open');
+  setTimeout(() => document.getElementById('pwd-input').focus(), 100);
+}
+
+function checkPassword() {
+  const val = document.getElementById('pwd-input').value;
+  if (val === ADMIN_PASSWORD) {
+    document.getElementById('pwd-overlay').classList.remove('open');
+    openAdminPanel();
+  } else {
+    document.getElementById('pwd-error').style.display = 'block';
+    document.getElementById('pwd-input').value = '';
+    document.getElementById('pwd-input').focus();
+  }
+}
+
+function openAdminPanel() {
+  const toolSponsors = Object.entries(sponsorships).filter(([k]) => !k.startsWith('custom'));
+  const customEntries = sponsorships.custom ? Object.values(sponsorships.custom) : [];
+  const collectedFromTools = toolSponsors.reduce((s, [k]) => s + (tools[Number(k)] ? tools[Number(k)].price : 0), 0);
+  const collectedFromCustom = customEntries.reduce((s, e) => s + (e.amount || 0), 0);
+  const totalCollected = collectedFromTools + collectedFromCustom;
+  const remaining = tools.reduce((s, t, i) => s + (sponsorships[String(i)] ? 0 : t.price), 0);
+
+  document.getElementById('adm-total').textContent = tools.length;
+  document.getElementById('adm-sponsored').textContent = toolSponsors.length;
+  document.getElementById('adm-collected').textContent = '$' + totalCollected.toLocaleString();
+  document.getElementById('adm-remaining').textContent = '$' + remaining.toLocaleString();
+
+  // Tool sponsorships
+  const toolsList = document.getElementById('adm-tools-list');
+  if (toolSponsors.length === 0) {
+    toolsList.innerHTML = '<div class="admin-empty">No tools sponsored yet.</div>';
+  } else {
+    toolsList.innerHTML = toolSponsors.map(([k, sp]) => {
+      const t = tools[Number(k)];
+      if (!t) return '';
+      const d = new Date(sp.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      return `<div class="admin-row">
+        <div class="admin-row-icon">✅</div>
+        <div style="flex:1">
+          <div class="admin-row-tool">${t.name}</div>
+          <div class="admin-row-meta">Sponsored by <strong>${sp.name}</strong> · ${d}</div>
+        </div>
+        <div class="admin-row-price">$${t.price}</div>
+      </div>`;
+    }).join('');
+  }
+
+  // Custom contributions
+  const customList = document.getElementById('adm-custom-list');
+  if (customEntries.length === 0) {
+    customList.innerHTML = '<div class="admin-empty">No custom contributions yet.</div>';
+  } else {
+    customList.innerHTML = customEntries.map(e => {
+      const d = new Date(e.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      return `<div class="admin-row">
+        <div class="admin-row-icon">💛</div>
+        <div style="flex:1">
+          <div class="admin-row-tool">Custom Contribution</div>
+          <div class="admin-row-meta">From <strong>${e.name}</strong> · ${d}</div>
+        </div>
+        <div class="admin-row-price">$${e.amount || '?'}</div>
+      </div>`;
+    }).join('');
+  }
+
+  document.getElementById('admin-overlay').classList.add('open');
+}
+
+function closePwdOverlay(e) { if (e.target.id === 'pwd-overlay') document.getElementById('pwd-overlay').classList.remove('open'); }
+function closeAdminOverlay(e) { if (e.target.id === 'admin-overlay') document.getElementById('admin-overlay').classList.remove('open'); }
+
+// Allow Enter key on password field
+document.getElementById('pwd-input').addEventListener('keydown', e => { if (e.key === 'Enter') checkPassword(); });
+
 // Expose functions to global scope (required when using type="module")
 window.setFilter = setFilter;
 window.openModal = openModal;
@@ -393,6 +533,10 @@ window.openCustomModal = openCustomModal;
 window.closeModal = closeModal;
 window.bgClose = bgClose;
 window.confirmSponsor = confirmSponsor;
+window.openAdminPrompt = openAdminPrompt;
+window.checkPassword = checkPassword;
+window.closePwdOverlay = closePwdOverlay;
+window.closeAdminOverlay = closeAdminOverlay;
 
 load();
 </script>
