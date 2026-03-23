@@ -386,6 +386,14 @@ async function confirmSponsor() {
   // No need to call render() — onValue listener fires automatically after Firebase write
 }
 
+// Expose functions to global scope (required when using type="module")
+window.setFilter = setFilter;
+window.openModal = openModal;
+window.openCustomModal = openCustomModal;
+window.closeModal = closeModal;
+window.bgClose = bgClose;
+window.confirmSponsor = confirmSponsor;
+
 load();
 </script>
 </body>
