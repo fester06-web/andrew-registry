@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Andrew's Tool Registry — Diesel Mechanic Graduate</title>
+<title>A2ndrew's Tool Registry — Diesel Mechanic Graduate</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -54,8 +54,8 @@
 
 .btn-link { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px; background: rgba(255,255,255,.04); border: 1.5px solid rgba(255,255,255,.1); border-radius: 5px; color: var(–chrome); font-size: 12px; font-family: ‘DM Mono’, monospace; text-decoration: none; padding: 9px 12px; transition: all .18s; cursor: pointer; }
 .btn-link:hover { background: rgba(245,166,35,.1); border-color: var(–gold); color: var(–gold); }
-.btn-sponsor { flex: 1.4; background: var(–gold); border: none; border-radius: 5px; color: var(–grease); font-size: 12px; font-weight: 700; font-family: ‘DM Mono’, monospace; letter-spacing: 1px; text-transform: uppercase; padding: 9px 12px; cursor: pointer; transition: all .18s; display: flex; align-items: center; justify-content: center; gap: 6px; }
-.btn-sponsor:hover { background: var(–amber); transform: scale(1.02); }
+.btn-sponsor { flex: 1.4; background: #f5a623; border: none; border-radius: 5px; color: #0d1017; font-size: 12px; font-weight: 700; font-family: ‘DM Mono’, monospace; letter-spacing: 1px; text-transform: uppercase; padding: 9px 12px; cursor: pointer; transition: all .18s; display: flex; align-items: center; justify-content: center; gap: 6px; }
+.btn-sponsor:hover { background: #ff8c00; transform: scale(1.02); }
 
 .card.sponsored { opacity: 0.6; border-color: rgba(46,204,113,.2); }
 .sponsor-badge { font-size: 12px; color: var(–mint); font-family: ‘DM Mono’, monospace; letter-spacing: 0.5px; }
@@ -68,13 +68,13 @@
 .amount-input::placeholder { color: var(–muted); }
 .amount-input.error { border-color: #e74c3c; }
 
-.modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.75); z-index: 100; align-items: center; justify-content: center; padding: 20px; }
+.modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.88); z-index: 100; align-items: center; justify-content: center; padding: 20px; }
 .modal-bg.open { display: flex; }
-.modal { background: var(–iron); border: 1.5px solid rgba(245,166,35,.4); border-radius: 10px; max-width: 460px; width: 100%; padding: 32px; position: relative; }
+.modal { background: #252b3b; border: 1.5px solid rgba(245,166,35,.4); border-radius: 10px; max-width: 460px; width: 100%; padding: 32px; position: relative; box-shadow: 0 24px 80px rgba(0,0,0,.9); }
 .modal h2 { font-family: ‘Bebas Neue’, sans-serif; font-size: 28px; color: var(–gold); letter-spacing: 1px; margin-bottom: 6px; }
 .modal .tool-name-modal { font-size: 14px; color: var(–muted); margin-bottom: 22px; border-bottom: 1px solid rgba(255,255,255,.06); padding-bottom: 16px; }
 .modal-methods { display: flex; flex-direction: column; gap: 12px; margin-bottom: 22px; }
-.modal-method { display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 6px; padding: 14px 16px; }
+.modal-method { display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); border-radius: 6px; padding: 14px 16px; }
 .modal-method .m-icon { font-size: 24px; }
 .modal-method .m-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(–muted); font-family: ‘DM Mono’, monospace; margin-bottom: 3px; }
 .modal-method .m-value { font-size: 15px; font-weight: 600; color: var(–text); }
@@ -87,7 +87,7 @@
 .name-input::placeholder { color: var(–muted); }
 .name-input.error { border-color: #e74c3c; }
 
-.btn-confirm { width: 100%; background: var(–mint); border: none; border-radius: 6px; color: #0d1017; font-family: ‘Bebas Neue’, sans-serif; font-size: 20px; letter-spacing: 2px; padding: 14px; cursor: pointer; transition: opacity .2s; }
+.btn-confirm { width: 100%; background: #2ecc71; border: none; border-radius: 6px; color: #0d1017; font-family: ‘Bebas Neue’, sans-serif; font-size: 20px; letter-spacing: 2px; padding: 14px; cursor: pointer; transition: opacity .2s; }
 .btn-confirm:hover { opacity: 0.85; }
 .btn-confirm:disabled { opacity: 0.45; cursor: not-allowed; }
 
