@@ -17,7 +17,7 @@
   .page-wrap { position: relative; z-index: 1; }
 
   .hero { background: linear-gradient(160deg,#1a1f2e 0%,#0d1017 60%); border-bottom: 3px solid var(--gold); padding: 60px 24px 50px; text-align: center; position: relative; overflow: hidden; }
-  .hero::after { content: '⚙'; font-size: 340px; position: absolute; right: -60px; top: -80px; opacity: 0.04; line-height: 1; pointer-events: none; }
+  .hero::after { content: '\u2699'; font-size: 340px; position: absolute; right: -60px; top: -80px; opacity: 0.04; line-height: 1; pointer-events: none; }
   .badge { display: inline-block; background: var(--gold); color: var(--grease); font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; padding: 6px 16px; border-radius: 2px; margin-bottom: 24px; }
   .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px,10vw,96px); letter-spacing: 2px; line-height: 0.95; }
   .hero h1 span { color: var(--gold); }
@@ -94,7 +94,6 @@
   .page-footer { text-align: center; padding: 24px; font-size: 12px; color: var(--dim); font-family: 'DM Mono', monospace; border-top: 1px solid rgba(255,255,255,.05); }
   @media (max-width:600px) { .stats-bar { gap: 28px; } .grid { grid-template-columns: 1fr; } }
 
-  /* ── ADMIN ── */
   .admin-trigger { background: none; border: none; color: var(--dim); font-size: 16px; cursor: pointer; padding: 4px 8px; opacity: 0.4; transition: opacity .2s; }
   .admin-trigger:hover { opacity: 1; }
   .admin-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.85); z-index: 200; align-items: flex-start; justify-content: center; padding: 24px; overflow-y: auto; }
@@ -126,43 +125,43 @@
 <body>
 <div class="page-wrap">
   <header class="hero">
-    <div class="badge">🎓 Class of 2026 · Diesel Mechanics</div>
-    <h1>Andrew's<br><span>Tool Registry</span></h1>
-    <p class="hero-sub">Andrew just graduated with his degree in <strong>Diesel Mechanics</strong> and is launching his career. Help him build his toolbox — every contribution makes a real difference!</p>
+    <div class="badge">\U0001f393 Class of 2026 \xb7 Diesel Mechanics</div>
+    <h1>Andrew\'s<br><span>Tool Registry</span></h1>
+    <p class="hero-sub">Andrew just graduated with his degree in <strong>Diesel Mechanics</strong> and is launching his career. Help him build his toolbox \u2014 every contribution makes a real difference!</p>
     <div class="contribute-box">
       <h3>How to Contribute</h3>
       <div class="contribute-methods">
-        <div class="method-chip"><span>💸</span> Venmo</div>
-        <div class="method-chip"><span>🍎</span> Apple Pay</div>
-        <div class="method-chip"><span>✉️</span> Check by mail</div>
-        <div class="method-chip"><span>🎁</span> Gift card</div>
-        <div class="method-chip"><span>📞</span> Ask us for details</div>
+        <div class="method-chip"><span>\U0001f4b8</span> Venmo</div>
+        <div class="method-chip"><span>\U0001f34e</span> Apple Pay</div>
+        <div class="method-chip"><span>\u2709\ufe0f</span> Check by mail</div>
+        <div class="method-chip"><span>\U0001f381</span> Gift card</div>
+        <div class="method-chip"><span>\U0001f4de</span> Ask us for details</div>
       </div>
-      <p class="contribute-note">Pick a tool below and click <strong>Sponsor This</strong> — then reach out to the family for payment details (Venmo, Apple Pay, check, or gift card). Gift cards welcome from: Harbor Freight, Home Depot, or Matco Tools.</p>
+      <p class="contribute-note">Pick a tool below and click <strong>Sponsor This</strong> \u2014 then reach out to the family for payment details (Venmo, Apple Pay, check, or gift card). Gift cards welcome from: Harbor Freight, Home Depot, or Matco Tools.</p>
     </div>
   </header>
 
   <div class="stats-bar">
-    <div class="stat"><div class="stat-num" id="stat-total">—</div><div class="stat-label">Total Items</div></div>
-    <div class="stat"><div class="stat-num" id="stat-sponsored">—</div><div class="stat-label">Sponsored</div></div>
+    <div class="stat"><div class="stat-num" id="stat-total">\u2014</div><div class="stat-label">Total Items</div></div>
+    <div class="stat"><div class="stat-num" id="stat-sponsored">\u2014</div><div class="stat-label">Sponsored</div></div>
     <div class="stat"><div class="stat-num">$4,909</div><div class="stat-label">Total Value</div></div>
-    <div class="stat"><div class="stat-num" id="stat-remaining">—</div><div class="stat-label">Still Needed</div></div>
+    <div class="stat"><div class="stat-num" id="stat-remaining">\u2014</div><div class="stat-label">Still Needed</div></div>
   </div>
 
   <div class="filter-row">
-    <button class="filter-btn active" onclick="setFilter('all',this)">All Tools</button>
-    <button class="filter-btn" onclick="setFilter('power',this)">⚡ Power Tools</button>
-    <button class="filter-btn" onclick="setFilter('hand',this)">🔧 Hand Tools</button>
-    <button class="filter-btn" onclick="setFilter('sockets',this)">🔩 Sockets & Drives</button>
-    <button class="filter-btn" onclick="setFilter('storage',this)">🗄️ Storage</button>
-    <button class="filter-btn" onclick="setFilter('pliers',this)">🦾 Pliers</button>
-    <button class="filter-btn" onclick="setFilter('available',this)">🟢 Available</button>
+    <button class="filter-btn active" onclick="setFilter(\'all\',this)">All Tools</button>
+    <button class="filter-btn" onclick="setFilter(\'power\',this)">\u26a1 Power Tools</button>
+    <button class="filter-btn" onclick="setFilter(\'hand\',this)">\U0001f527 Hand Tools</button>
+    <button class="filter-btn" onclick="setFilter(\'sockets\',this)">\U0001f529 Sockets &amp; Drives</button>
+    <button class="filter-btn" onclick="setFilter(\'storage\',this)">\U0001f5c4\ufe0f Storage</button>
+    <button class="filter-btn" onclick="setFilter(\'pliers\',this)">\U0001f9be Pliers</button>
+    <button class="filter-btn" onclick="setFilter(\'available\',this)">\U0001f7e2 Available</button>
   </div>
 
-  <div class="grid" id="tool-grid"><div class="loading-bar">LOADING REGISTRY…</div></div>
+  <div class="grid" id="tool-grid"><div class="loading-bar">LOADING REGISTRY\u2026</div></div>
   <footer class="page-footer">
-    Made with love for Andrew's big milestone · Diesel Mechanic Graduate 2026
-    <button class="admin-trigger" onclick="openAdminPrompt()" title="Admin">⚙</button>
+    Made with love for Andrew\'s big milestone \xb7 Diesel Mechanic Graduate 2026
+    <button class="admin-trigger" onclick="openAdminPrompt()" title="Admin">\u2699</button>
   </footer>
 </div>
 
@@ -284,15 +283,14 @@ const tools = [
 ];
 
 const catLabel = { power:'⚡ Power', hand:'🔧 Hand Tool', sockets:'🔩 Sockets', storage:'🗄️ Storage', pliers:'🦾 Pliers' };
-const CUSTOM_IDX = 9999; // special index for custom contributions
-let sponsorships = {}; // live from Firebase
-let pendingSave = null; // data staged before save()
+const CUSTOM_IDX = 9999;
+let sponsorships = {};
+let pendingSave = null;
 let currentFilter = 'all';
 let activeIdx = null;
 let isCustom = false;
 let busy = false;
 
-// Listen to Firebase in real time — updates for ALL visitors instantly
 function load() {
   document.getElementById('tool-grid').innerHTML = '<div class="loading-bar">LOADING REGISTRY…</div>';
   onValue(sponsorshipsRef, (snapshot) => {
@@ -303,11 +301,9 @@ function load() {
 
 async function save() {
   if (isCustom) {
-    // Custom contributions: push a new child entry (they stack)
     const customRef = ref(db, 'sponsorships/custom');
     await push(customRef, pendingSave);
   } else {
-    // Tool sponsorships: write to specific index key
     const updates = {};
     updates['sponsorships/' + activeIdx] = pendingSave;
     await update(ref(db), updates);
@@ -319,7 +315,6 @@ function render() {
   grid.innerHTML = '';
   let shown = 0;
 
-  // Custom contribution card
   if (currentFilter === 'all' || currentFilter === 'available') {
     const customCard = document.createElement('div');
     customCard.className = 'card custom-card';
@@ -381,7 +376,7 @@ function openModal(idx) {
   const t = tools[idx];
   document.getElementById('modal-heading').textContent = 'Sponsor This Tool';
   document.getElementById('modal-tool-name').textContent = t.name + ' — $' + t.price;
-  document.getElementById('modal-note').innerHTML = '\ud83d\udcac Suggested amount: <strong>' + '$' + t.price + '</strong>. After you send your gift, enter your name below — this tool will instantly be marked as sponsored for everyone visiting the page!';
+  document.getElementById('modal-note').innerHTML = '\ud83d\udcac Suggested amount: <strong>$' + t.price + '</strong>. After you send your gift, enter your name below — this tool will instantly be marked as sponsored for everyone visiting the page!';
   document.getElementById('modal-store').textContent = t.store + ' gift card';
   document.getElementById('custom-amount').style.display = 'none';
   document.getElementById('custom-amount').value = '';
@@ -398,7 +393,7 @@ function openCustomModal() {
   isCustom = true;
   activeIdx = CUSTOM_IDX;
   document.getElementById('modal-heading').textContent = 'Contribute Any Amount';
-  document.getElementById('modal-tool-name').textContent = 'Custom contribution toward Andrew\'s toolbox';
+  document.getElementById('modal-tool-name').textContent = "Custom contribution toward Andrew's toolbox";
   document.getElementById('modal-note').innerHTML = '\ud83d\udcac Enter any amount you\'d like to contribute — every dollar helps! Send via any method below, then enter your name to be recognized.';
   document.getElementById('modal-store').textContent = 'Harbor Freight / Home Depot gift card';
   document.getElementById('custom-amount').style.display = 'block';
@@ -420,34 +415,24 @@ async function confirmSponsor() {
   const nameEl = document.getElementById('sponsor-name');
   const name = nameEl.value.trim();
   let amount = null;
-
   if (isCustom) {
     const amountEl = document.getElementById('custom-amount');
     amount = parseFloat(amountEl.value);
     if (!amount || amount <= 0) { amountEl.classList.add('error'); amountEl.focus(); return; }
   }
-
   if (!name) { nameEl.classList.add('error'); nameEl.focus(); return; }
   if (busy || activeIdx === null) return;
   busy = true;
   const btn = document.getElementById('confirm-btn');
   btn.disabled = true;
-  btn.textContent = 'Saving…';
-
-  if (isCustom) {
-    pendingSave = { name, amount, date: new Date().toISOString() };
-  } else {
-    pendingSave = { name, date: new Date().toISOString() };
-  }
-
+  btn.textContent = 'Saving\u2026';
+  pendingSave = isCustom ? { name, amount, date: new Date().toISOString() } : { name, date: new Date().toISOString() };
   await save();
   busy = false;
   closeModal();
-  // No need to call render() — onValue listener fires automatically after Firebase write
 }
 
-// ── ADMIN ──
-const ADMIN_PASSWORD = 'schrock2026'; // Change this to your preferred password
+const ADMIN_PASSWORD = 'schrock2026';
 
 function openAdminPrompt() {
   document.getElementById('pwd-input').value = '';
@@ -481,7 +466,6 @@ function openAdminPanel() {
   document.getElementById('adm-collected').textContent = '$' + totalCollected.toLocaleString();
   document.getElementById('adm-remaining').textContent = '$' + remaining.toLocaleString();
 
-  // Tool sponsorships
   const toolsList = document.getElementById('adm-tools-list');
   if (toolSponsors.length === 0) {
     toolsList.innerHTML = '<div class="admin-empty">No tools sponsored yet.</div>';
@@ -502,7 +486,6 @@ function openAdminPanel() {
     }).join('');
   }
 
-  // Custom contributions
   const customList = document.getElementById('adm-custom-list');
   if (customEntries.length === 0) {
     customList.innerHTML = '<div class="admin-empty">No custom contributions yet.</div>';
@@ -529,7 +512,7 @@ async function removeSponsorship(key) {
   const updates = {};
   updates['sponsorships/' + key] = null;
   await update(ref(db), updates);
-  openAdminPanel(); // refresh panel
+  openAdminPanel();
 }
 
 async function removeCustom(key) {
@@ -537,16 +520,14 @@ async function removeCustom(key) {
   const updates = {};
   updates['sponsorships/custom/' + key] = null;
   await update(ref(db), updates);
-  openAdminPanel(); // refresh panel
+  openAdminPanel();
 }
 
 function closePwdOverlay(e) { if (e.target.id === 'pwd-overlay') document.getElementById('pwd-overlay').classList.remove('open'); }
 function closeAdminOverlay(e) { if (e.target.id === 'admin-overlay') document.getElementById('admin-overlay').classList.remove('open'); }
 
-// Allow Enter key on password field
 document.getElementById('pwd-input').addEventListener('keydown', e => { if (e.key === 'Enter') checkPassword(); });
 
-// Expose functions to global scope (required when using type="module")
 window.setFilter = setFilter;
 window.openModal = openModal;
 window.openCustomModal = openCustomModal;
