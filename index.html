@@ -253,14 +253,9 @@ background: var(–grease);
 
 .photo-grid {
 display: grid;
-grid-template-columns: 1fr 1fr;
+grid-template-columns: 1fr 1fr 1fr 1fr;
 gap: 16px;
-}
-
-/* HS grad spans full width at top */
-.photo-slot:first-child {
-grid-column: 1 / -1;
-aspect-ratio: 16/9;
+align-items: stretch;
 }
 
 .photo-slot {
@@ -269,7 +264,13 @@ border-radius: 8px;
 overflow: hidden;
 background: var(–iron);
 border: 1.5px solid rgba(255,255,255,0.07);
-aspect-ratio: 4/3;
+aspect-ratio: 3/4;
+}
+
+/* Middle two classroom photos — landscape feel */
+.photo-slot:nth-child(2),
+.photo-slot:nth-child(3) {
+aspect-ratio: 3/4;
 }
 
 .photo-slot img {
@@ -282,10 +283,14 @@ position: absolute;
 inset: 0;
 }
 
-.photo-slot:first-child img { object-position: center 25%; }
-.photo-slot:nth-child(2) img { object-position: center 30%; }
-.photo-slot:nth-child(3) img { object-position: center 40%; }
-.photo-slot:nth-child(4) img { object-position: center top; }
+/* HS grad — show face, not too much sky */
+.photo-slot:first-child img { object-position: center 30%; }
+/* Engine classroom — center action */
+.photo-slot:nth-child(2) img { object-position: center 25%; }
+/* Transmission group — center group */
+.photo-slot:nth-child(3) img { object-position: center 35%; }
+/* End of day — show face and uniform */
+.photo-slot:nth-child(4) img { object-position: center 15%; }
 
 /* Placeholder state */
 .photo-placeholder {
@@ -525,8 +530,8 @@ border-top: 1px solid rgba(255,255,255,0.04);
 
 /* Responsive */
 @media (max-width: 640px) {
-.photo-grid { grid-template-columns: 1fr; }
-.photo-slot:first-child { grid-column: 1; aspect-ratio: 4/3; }
+.photo-grid { grid-template-columns: 1fr 1fr; }
+.photo-slot { aspect-ratio: 3/4; }
 .quote-inner { padding: 24px 20px; }
 }
 </style>
@@ -602,13 +607,13 @@ border-top: 1px solid rgba(255,255,255,0.04);
   <!-- Photo 2 -->
   <div class="photo-slot">
     <img src="photo-2.jpg" alt="Andrew at work">
-    <div class="photo-caption">Working on a diesel engine at VCCC</div>
+    <div class="photo-caption">Diesel engine rebuild — VCCC classroom</div>
   </div>
 
   <!-- Photo 3 -->
   <div class="photo-slot">
     <img src="photo-3.jpg" alt="Andrew at work">
-    <div class="photo-caption">Transmission work at Gibbs Truck Centers</div>
+    <div class="photo-caption">Transmission teardown — VCCC classroom</div>
   </div>
 
   <!-- Photo 4 -->
@@ -631,7 +636,7 @@ border-top: 1px solid rgba(255,255,255,0.04);
       <p class="quote-text">
         The best growth happens when you're humbled and inspired at the same time. This program didn't just teach Andrew mechanics — it taught him who he is.
       </p>
-      <p class="quote-attr">— His Mom &amp; Dad</p>
+      <p class="quote-attr">— Mom &amp; Dad</p>
     </div>
   </section>
 
