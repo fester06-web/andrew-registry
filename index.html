@@ -249,13 +249,16 @@ max-width: 900px;
 margin: 0 auto;
 }
 
-/* HS grad tall on left, 3 portraits stacked on right */
 .photo-grid {
 display: grid;
 grid-template-columns: 1fr 1fr;
-grid-template-rows: auto;
 gap: 16px;
-align-items: start;
+}
+
+/* HS grad spans full width at top */
+.photo-slot:first-child {
+grid-column: 1 / -1;
+aspect-ratio: 16/9;
 }
 
 .photo-slot {
@@ -264,21 +267,6 @@ border-radius: 8px;
 overflow: hidden;
 background: var(–iron);
 border: 1.5px solid rgba(255,255,255,0.07);
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-gap: 10px;
-}
-
-/* HS grad — tall portrait, spans full left column height */
-.photo-slot:first-child {
-aspect-ratio: 3/4;
-grid-row: 1 / 4;
-}
-
-/* Photos 2, 3, 4 — shorter portrait slots stacked in right column */
-.photo-slot:not(:first-child) {
 aspect-ratio: 4/3;
 }
 
@@ -292,12 +280,7 @@ position: absolute;
 inset: 0;
 }
 
-/* HS grad — show from cap down, center horizontally */
-.photo-slot:first-child img {
-object-position: center 15%;
-}
-
-/* Work photos — center focus */
+.photo-slot:first-child img { object-position: center 25%; }
 .photo-slot:nth-child(2) img { object-position: center 30%; }
 .photo-slot:nth-child(3) img { object-position: center 40%; }
 .photo-slot:nth-child(4) img { object-position: center top; }
@@ -538,10 +521,8 @@ border-top: 1px solid rgba(255,255,255,0.04);
 
 /* Responsive */
 @media (max-width: 640px) {
-.story-grid { grid-template-columns: 1fr; }
 .photo-grid { grid-template-columns: 1fr; }
-.photo-slot:first-child { grid-row: auto; aspect-ratio: 3/4; }
-.photo-slot:not(:first-child) { aspect-ratio: 4/3; }
+.photo-slot:first-child { grid-column: 1; aspect-ratio: 4/3; }
 .quote-inner { padding: 24px 20px; }
 }
 </style>
@@ -582,32 +563,23 @@ border-top: 1px solid rgba(255,255,255,0.04);
 
   <section class="story">
     <div class="section-label">// His Journey</div>
-    <div class="story-grid">
-      <div class="story-text">
-        <h2>Built for the <em>Shop Floor</em></h2>
-        <div class="story-body">
-          <p>
-            <strong>Andrew</strong> has always had a passion for how things work — engines, machines, and the satisfaction of fixing what's broken. In August 2024 he enrolled in the <strong>Associate of Science in Diesel Mechanics program</strong> at Ventura County Community College, with a focus on Diesel Engine Repair and Medium and Heavy Duty Vehicle Repair.
-          </p>
-          <p>
-            Along the way, he's earned certifications including <strong>[certifications coming soon]</strong> — a list that continues to grow with every semester. He also plans to complete his <strong>CDL this summer</strong>.
-          </p>
-          <p>
-            He will officially graduate in December 2026, but the bulk of his coursework will be completed this spring. He's not waiting around — in December 2025 he began <strong>interning part-time at Gibbs International Truck Centers</strong> in Oxnard, a full-service dealership specializing in International and Isuzu trucks serving Central California. Working alongside ASE certified mechanics on medium and heavy duty vehicles, he's been putting his classroom training to work in a real shop environment. This summer and fall he's ready to step into full-time work and interning — but to do that, <strong>he needs his own tools</strong>. That's where you come in.
-          </p>
-          <p>
-            As any mechanic will tell you, your tools are everything — they're your livelihood, your craft, and your calling card. You can <strong>sponsor a tool</strong> from his registry using gift cards to Harbor Freight or Home Depot, or with a cash gift via Venmo, Apple Pay, or check. Best of all, Andrew is able to leverage his <strong>student discount</strong> with several vendors — meaning every dollar you contribute stretches even further toward building his toolbox. Reach out to us directly for payment details!
-          </p>
-        </div>
+    <div class="story-text">
+      <h2>Built for the <em>Shop Floor</em></h2>
+      <div class="story-body">
+        <p>
+          <strong>Andrew</strong> has always had a passion for how things work — engines, machines, and the satisfaction of fixing what's broken. In August 2024 he enrolled in the <strong>Associate of Science in Diesel Mechanics program</strong> at Ventura County Community College, with a focus on Diesel Engine Repair and Medium and Heavy Duty Vehicle Repair.
+        </p>
+        <p>
+          Along the way, he's earned certifications including <strong>[certifications coming soon]</strong> — a list that continues to grow with every semester. He also plans to complete his <strong>CDL this summer</strong>.
+        </p>
+        <p>
+          He will officially graduate in December 2026, but the bulk of his coursework will be completed this spring. He's not waiting around — in December 2025 he began <strong>interning part-time at Gibbs International Truck Centers</strong> in Oxnard, a full-service dealership specializing in International and Isuzu trucks serving Central California. Working alongside ASE certified mechanics on medium and heavy duty vehicles, he's been putting his classroom training to work in a real shop environment. This summer and fall he's ready to step into full-time work and interning — but to do that, <strong>he needs his own tools</strong>. That's where you come in.
+        </p>
+        <p>
+          As any mechanic will tell you, your tools are everything — they're your livelihood, your craft, and your calling card. You can <strong>sponsor a tool</strong> from his registry using gift cards to Harbor Freight or Home Depot, or with a cash gift via Venmo, Apple Pay, or check. Best of all, Andrew is able to leverage his <strong>student discount</strong> with several vendors — meaning every dollar you contribute stretches even further toward building his toolbox. Reach out to us directly for payment details!
+        </p>
       </div>
-
-```
-  <!-- Photo 1: HS Graduation (full width, top) -->
-  <div style="display:contents">
-  </div>
-</div>
-```
-
+    </div>
   </section>
 
   <!-- ── PHOTOS ── -->
