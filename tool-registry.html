@@ -88,6 +88,9 @@
   .name-input::placeholder { color: #8892a4; }
   .name-input.error { border-color: #e74c3c; }
 
+  .comment-input { width: 100%; background: rgba(255,255,255,.05); border: 1.5px solid rgba(255,255,255,.12); border-radius: 6px; color: #e8ecf4; font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 12px 14px; margin-bottom: 12px; outline: none; transition: border-color .2s; resize: vertical; min-height: 70px; }
+  .comment-input:focus { border-color: #f5a623; }
+  .comment-input::placeholder { color: #8892a4; }
   .btn-confirm { width: 100%; background: #2ecc71; border: none; border-radius: 6px; color: #0d1017; font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 2px; padding: 14px; cursor: pointer; transition: opacity .2s; }
   .btn-confirm:hover { opacity: 0.85; }
   .btn-confirm:disabled { opacity: 0.45; cursor: not-allowed; }
@@ -225,6 +228,7 @@
     <div class="modal-note" id="modal-note">💬 Suggested amount: <strong id="modal-price"></strong>. After you send your gift, enter your name below — this tool will instantly be marked as sponsored for everyone visiting the page!</div>
     <input class="amount-input" id="custom-amount" type="number" min="1" placeholder="Your contribution amount (e.g. 25)" style="display:none" oninput="this.classList.remove('error')" />
     <input class="name-input" id="sponsor-name" type="text" placeholder="Your name (e.g. Aunt Linda)" maxlength="40" oninput="this.classList.remove('error')" />
+    <textarea class="comment-input" id="sponsor-comment" placeholder="Optional: leave a note, phone number, or message for Andrew" maxlength="200"></textarea>
     <button class="btn-confirm" id="confirm-btn" onclick="confirmSponsor()">✓ Mark as Sponsored</button>
   </div>
 </div>
@@ -400,6 +404,7 @@ function openModal(idx) {
   document.getElementById('custom-amount').value = '';
   document.getElementById('sponsor-name').value = '';
   document.getElementById('sponsor-name').classList.remove('error');
+  document.getElementById('sponsor-comment').value = '';
   const btn = document.getElementById('confirm-btn');
   btn.disabled = false;
   btn.textContent = '\u2713 Mark as Sponsored';
@@ -419,6 +424,7 @@ function openCustomModal() {
   document.getElementById('custom-amount').classList.remove('error');
   document.getElementById('sponsor-name').value = '';
   document.getElementById('sponsor-name').classList.remove('error');
+  document.getElementById('sponsor-comment').value = '';
   const btn = document.getElementById('confirm-btn');
   btn.disabled = false;
   btn.textContent = '\u2713 Record My Contribution';
@@ -444,7 +450,10 @@ async function confirmSponsor() {
   const btn = document.getElementById('confirm-btn');
   btn.disabled = true;
   btn.textContent = 'Saving\u2026';
-  pendingSave = isCustom ? { name, amount, date: new Date().toISOString() } : { name, date: new Date().toISOString() };
+  const comment = document.getElementById('sponsor-comment').value.trim();
+  pendingSave = isCustom
+    ? { name, amount, date: new Date().toISOString(), ...(comment && { comment }) }
+    : { name, date: new Date().toISOString(), ...(comment && { comment }) };
   await save();
   busy = false;
   closeModal();
@@ -497,7 +506,7 @@ function openAdminPanel() {
         <div class="admin-row-icon">✅</div>
         <div style="flex:1">
           <div class="admin-row-tool">${t.name}</div>
-          <div class="admin-row-meta">Sponsored by <strong>${sp.name}</strong> · ${d}</div>
+          <div class="admin-row-meta">Sponsored by <strong>${sp.name}</strong> · ${d}${sp.comment ? '<br><span style="color:#c8d0e0">💬 ' + sp.comment + '</span>' : ''}</div>
         </div>
         <div class="admin-row-price">$${t.price}</div>
         <button class="btn-remove" onclick="removeSponsorship('${k}')">Remove</button>
@@ -515,7 +524,7 @@ function openAdminPanel() {
         <div class="admin-row-icon">💛</div>
         <div style="flex:1">
           <div class="admin-row-tool">Custom Contribution</div>
-          <div class="admin-row-meta">From <strong>${e.name}</strong> · ${d}</div>
+          <div class="admin-row-meta">From <strong>${e.name}</strong> · ${d}${e.comment ? '<br><span style="color:#c8d0e0">💬 ' + e.comment + '</span>' : ''}</div>
         </div>
         <div class="admin-row-price">$${e.amount || '?'}</div>
         <button class="btn-remove" onclick="removeCustom('${ck}')">Remove</button>
