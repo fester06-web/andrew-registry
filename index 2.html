@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andrew — Diesel Mechanic Graduate 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TR9X5X6883"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-TR9X5X6883');
+</script>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; background: #0d1017; }
+
+  body {
+    background: #0d1017;
+    color: #e8ecf4;
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+
+  .page { position: relative; z-index: 1; background: #0d1017; }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px;
+    position: relative;
+    background: linear-gradient(170deg, #1a1f2e 0%, #0d1017 55%, #111620 100%);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(245,166,35,0.018) 40px, rgba(245,166,35,0.018) 41px);
+    pointer-events: none;
+  }
+
+  .hero-gear { position: absolute; font-size: 500px; opacity: 0.025; right: -120px; bottom: -120px; line-height: 1; pointer-events: none;  }
+  .hero-gear-2 { position: absolute; font-size: 220px; opacity: 0.02; left: -50px; top: 40px; line-height: 1; pointer-events: none;  }
+  
+
+  .eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: #f5a623; margin-bottom: 20px;  }
+
+  .hero-name { font-family: 'Bebas Neue', sans-serif; font-size: clamp(64px, 14vw, 130px); line-height: 0.9; letter-spacing: 2px; color: #e8ecf4;  }
+  .hero-name span { display: block; color: #f5a623; }
+
+  .hero-title { margin-top: 22px; font-size: clamp(15px, 3vw, 19px); font-weight: 300; color: #8892a4; letter-spacing: 0.5px; line-height: 1.5;  }
+  .hero-title strong { color: #c8d0e0; font-weight: 500; }
+
+  .hero-divider { width: 60px; height: 3px; background: linear-gradient(90deg, #f5a623, #ff8c00); margin: 28px auto;  }
+
+  .hero-tagline { font-size: 15px; font-style: italic; color: #8892a4; max-width: 480px; line-height: 1.7;  }
+
+  .story { background: #0d1017; max-width: 760px; margin: 0 auto; padding: 80px 24px 60px; }
+
+  .section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: #f5a623; margin-bottom: 16px; }
+
+  .story-text h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 6vw, 56px); line-height: 1; letter-spacing: 1px; margin-bottom: 24px; color: #e8ecf4; }
+  .story-text h2 em { color: #f5a623; font-style: normal; }
+
+  .story-body { font-size: 16px; font-weight: 300; line-height: 1.85; color: #8892a4; }
+  .story-body p + p { margin-top: 16px; }
+  .story-body strong { color: #c8d0e0; font-weight: 500; }
+
+  .photos { background: #0d1017; padding: 0 24px 80px; max-width: 1100px; margin: 0 auto; }
+
+  .photo-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; align-items: stretch; }
+
+  .photo-slot { position: relative; border-radius: 8px; overflow: hidden; background: #252b3b; border: 1.5px solid rgba(255,255,255,0.07); padding-bottom: 133%; /* 3/4 aspect ratio */ height: 0; }
+
+  .photo-slot img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+
+  .photo-slot:nth-child(1) img { object-position: center 30%; }
+  .photo-slot:nth-child(2) img { object-position: center 25%; }
+  .photo-slot:nth-child(3) img { object-position: center 35%; }
+  .photo-slot:nth-child(4) img { object-position: center 15%; }
+
+  .photo-slot::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,16,23,0.6) 0%, transparent 50%); pointer-events: none; z-index: 1; }
+
+  .photo-caption { position: absolute; bottom: 12px; left: 12px; right: 12px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.6); z-index: 2; }
+
+  .quote-block { background: #0d1017; max-width: 760px; margin: 0 auto; padding: 0 24px 80px; }
+
+  .quote-inner { background: rgba(245,166,35,0.06); border: 1.5px solid rgba(245,166,35,0.2); border-left: 4px solid #f5a623; border-radius: 8px; padding: 32px 36px; position: relative; }
+
+  .quote-mark { font-family: 'Bebas Neue', sans-serif; font-size: 80px; color: #f5a623; opacity: 0.15; position: absolute; top: 10px; left: 24px; line-height: 1; }
+
+  .quote-text { font-size: 18px; font-style: italic; font-weight: 300; line-height: 1.75; color: #c8d0e0; padding-left: 16px; position: relative; z-index: 1; }
+
+  .quote-attr { margin-top: 14px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #f5a623; padding-left: 16px; }
+
+  .cta-section { background: #0d1017; text-align: center; padding: 60px 24px 100px; border-top: 1px solid rgba(255,255,255,0.05); position: relative; }
+
+  .cta-section::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: linear-gradient(90deg, #f5a623, #ff8c00); }
+
+  .cta-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: #8892a4; margin-bottom: 20px; margin-top: 40px; }
+
+  .cta-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 7vw, 64px); letter-spacing: 2px; line-height: 1; margin-bottom: 16px; color: #e8ecf4; }
+  .cta-heading span { color: #f5a623; }
+
+  .cta-sub { font-size: 16px; font-weight: 300; color: #8892a4; max-width: 440px; margin: 0 auto 36px; line-height: 1.7; }
+
+  .btn-registry { display: inline-flex; align-items: center; gap: 12px; background: #f5a623; color: #0d1017; font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; padding: 18px 48px; border-radius: 6px; text-decoration: none; transition: all 0.2s; }
+  .btn-registry:hover { background: #ff8c00; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(245,166,35,0.25); }
+  .btn-registry .arrow { font-size: 18px; transition: transform 0.2s; }
+  .btn-registry:hover .arrow { transform: translateX(4px); }
+
+  .cta-note { margin-top: 20px; font-family: 'DM Mono', monospace; font-size: 12px; color: #4a5568; letter-spacing: 1px; }
+
+  .page-footer { background: #0d1017; text-align: center; padding: 24px; font-size: 12px; color: #4a5568; font-family: 'DM Mono', monospace; border-top: 1px solid rgba(255,255,255,0.04); }
+
+  
+
+  @media (max-width: 700px) { .photo-grid { grid-template-columns: 1fr 1fr; gap: 8px; } .quote-inner { padding: 24px 20px; } }
+  @media (max-width: 400px) { .photo-grid { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-gear">⚙</div>
+    <div class="hero-gear-2">⚙</div>
+    <div class="eyebrow">Diesel Mechanic · Class of 2026</div>
+    <h1 class="hero-name"><span>Andrew</span></h1>
+    <p class="hero-title">
+      <strong>Associate of Science, Diesel Mechanics</strong> &nbsp;·&nbsp; Ventura County Community College<br>
+      Starting his career, one tool at a time.
+    </p>
+    <div class="hero-divider"></div>
+    <p class="hero-tagline">
+      "From the classroom to the shop floor — help Andrew build the toolbox that will carry him through his career."
+    </p>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <p class="cta-label">// Help Him Get Started</p>
+    <h2 class="cta-heading">See the <span>Tool Registry</span></h2>
+    <p class="cta-sub">
+      Browse Andrew's wishlist and sponsor a tool — any amount helps. Every wrench, socket, and ratchet gets him one step closer to the career he's worked so hard for.
+    </p>
+    <a href="tool-registry.html" class="btn-registry">
+      View the Registry <span class="arrow">→</span>
+    </a>
+    <p class="cta-note">46 items · $4,909 total value · any amount welcome</p>
+  </section>
+
+  <!-- STORY -->
+  <section class="story">
+    <div class="section-label">// His Journey</div>
+    <div class="story-text">
+      <h2>Built for the <em>Shop Floor</em></h2>
+      <div class="story-body">
+        <p>
+          <strong>Andrew</strong> has always had a passion for how things work — engines, machines, and the satisfaction of fixing what's broken. In August 2024 he enrolled in the <strong>Associate of Science in Diesel Mechanics program</strong> at Ventura County Community College, with a focus on Diesel Engine Repair and Medium and Heavy Duty Vehicle Repair.
+        </p>
+        <p>
+          Along the way, he's earned an impressive set of certifications and training: <strong>Forklift Certification</strong> through Ventura County Community College; <strong>Basic Air Brake Training</strong> with Bendix; <strong>Medium and Heavy Duty Truck Training</strong> through Daimler; and <strong>Driveline Balancing and Diagnostics</strong> through Meritor. He also plans to complete his <strong>CDL this summer</strong> — and the list keeps growing.
+        </p>
+        <p>
+          He will officially graduate in December 2026, but the bulk of his coursework will be completed this spring. He's not waiting around — in December 2025 he began <strong>interning part-time at Gibbs International Truck Centers</strong> in Oxnard, a full-service dealership specializing in International and Isuzu trucks serving Central California. Working alongside ASE certified mechanics on medium and heavy duty vehicles, he's been putting his classroom training to work in a real shop environment. This summer and fall he's ready to step into full-time work and interning — but to do that, <strong>he needs his own tools</strong>. That's where you come in.
+        </p>
+        <p>
+          As any mechanic will tell you, your tools are everything — they're your livelihood, your craft, and your calling card. You can <strong>sponsor a tool</strong> from his registry using gift cards to Harbor Freight or Home Depot, or with a cash gift via Venmo, Apple Pay, or check. Best of all, Andrew is able to leverage his <strong>student discount</strong> with several vendors — meaning every dollar you contribute stretches even further toward building his toolbox. Reach out to us directly for payment details!
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTOS -->
+  <section class="photos">
+    <div class="section-label">// Andrew's Story in Photos</div>
+    <div class="photo-grid">
+      <div class="photo-slot">
+        <img src="hs-grad.jpg" alt="Andrew at high school graduation">
+        <div class="photo-caption">High School Graduation</div>
+      </div>
+      <div class="photo-slot">
+        <img src="photo-2.jpg" alt="Andrew working on a diesel engine">
+        <div class="photo-caption">Diesel engine rebuild — VCCC</div>
+      </div>
+      <div class="photo-slot">
+        <img src="photo-3.jpg" alt="Andrew and classmates with transmission">
+        <div class="photo-caption">Transmission teardown — VCCC</div>
+      </div>
+      <div class="photo-slot">
+        <img src="photo-4.jpg" alt="Andrew after a long day at work">
+        <div class="photo-caption">After a long day at the shop</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="quote-block">
+    <div class="quote-inner">
+      <div class="quote-mark">"</div>
+      <p class="quote-text">
+        The best growth happens when you're humbled and inspired at the same time. This program didn't just teach Andrew mechanics — it taught him who he is.
+      </p>
+      <p class="quote-attr">— Mom &amp; Dad</p>
+    </div>
+  </section>
+
+  <footer class="page-footer">
+    Andrew · Diesel Mechanic Graduate 2026 · Made with love by his family
+  </footer>
+
+</div>
+</body>
+</html>
