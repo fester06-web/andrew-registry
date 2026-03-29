@@ -5,20 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Andrew — Diesel Mechanic Graduate 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TR9X5X6883"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-TR9X5X6883');
+</script>
 <style>
-  :root {
-    --grease: #0d1017;
-    --iron:   #252b3b;
-    --steel:  #1a1f2e;
-    --chrome: #c8d0e0;
-    --gold:   #f5a623;
-    --amber:  #ff8c00;
-    --text:   #e8ecf4;
-    --muted:  #8892a4;
-    --dim:    #4a5568;
-    --mint:   #2ecc71;
-  }
-
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; background: #0d1017; }
 
@@ -78,11 +73,6 @@
   .hero-divider { width: 60px; height: 3px; background: linear-gradient(90deg, #f5a623, #ff8c00); margin: 28px auto; opacity: 0; animation: fadeUp 0.7s 0.45s ease forwards; }
 
   .hero-tagline { font-size: 15px; font-style: italic; color: #8892a4; max-width: 480px; line-height: 1.7; opacity: 0; animation: fadeUp 0.7s 0.55s ease forwards; }
-
-  .scroll-cue { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: fadeUp 1s 1.2s ease forwards; }
-  .scroll-cue span { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #4a5568; }
-  .scroll-arrow { width: 1px; height: 40px; background: linear-gradient(to bottom, #f5a623, transparent); animation: pulse-down 1.8s ease-in-out infinite; }
-  @keyframes pulse-down { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
 
   .story { background: #0d1017; max-width: 760px; margin: 0 auto; padding: 80px 24px 60px; }
 
@@ -147,10 +137,11 @@
   @media (max-width: 700px) { .photo-grid { grid-template-columns: 1fr 1fr; gap: 8px; } .quote-inner { padding: 24px 20px; } }
   @media (max-width: 400px) { .photo-grid { grid-template-columns: 1fr 1fr; } }
 </style>
-
+</head>
 <body>
 <div class="page">
 
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-gear">⚙</div>
     <div class="hero-gear-2">⚙</div>
@@ -164,9 +155,9 @@
     <p class="hero-tagline">
       "From the classroom to the shop floor — help Andrew build the toolbox that will carry him through his career."
     </p>
-
   </section>
 
+  <!-- CTA -->
   <section class="cta-section">
     <p class="cta-label">// Help Him Get Started</p>
     <h2 class="cta-heading">See the <span>Tool Registry</span></h2>
@@ -179,6 +170,7 @@
     <p class="cta-note">46 items · $4,909 total value · any amount welcome</p>
   </section>
 
+  <!-- STORY -->
   <section class="story">
     <div class="section-label">// His Journey</div>
     <div class="story-text">
@@ -200,6 +192,7 @@
     </div>
   </section>
 
+  <!-- PHOTOS -->
   <section class="photos">
     <div class="section-label">// Andrew's Story in Photos</div>
     <div class="photo-grid">
@@ -222,6 +215,7 @@
     </div>
   </section>
 
+  <!-- QUOTE -->
   <section class="quote-block">
     <div class="quote-inner">
       <div class="quote-mark">"</div>
