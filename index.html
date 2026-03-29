@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -18,137 +17,135 @@
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; background: #0d1017; }
 
-body {
-background: #0d1017;
-color: #e8ecf4;
-font-family: ‘DM Sans’, sans-serif;
-min-height: 100vh;
-overflow-x: hidden;
-}
+  body {
+    background: #0d1017;
+    color: #e8ecf4;
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-body::before {
-content: ‘’;
-position: fixed;
-inset: 0;
-background-image: url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 256 256’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘noise’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23noise)’ opacity=‘0.04’/%3E%3C/svg%3E”);
-pointer-events: none;
-z-index: 0;
-opacity: 0.6;
-}
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
 
-.page { position: relative; z-index: 1; background: #0d1017; }
+  .page { position: relative; z-index: 1; background: #0d1017; }
 
-.hero {
-min-height: 100vh;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-text-align: center;
-padding: 60px 24px;
-position: relative;
-background: linear-gradient(170deg, #1a1f2e 0%, #0d1017 55%, #111620 100%);
-overflow: hidden;
-}
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px;
+    position: relative;
+    background: linear-gradient(170deg, #1a1f2e 0%, #0d1017 55%, #111620 100%);
+    overflow: hidden;
+  }
 
-.hero::before {
-content: ‘’;
-position: absolute;
-inset: 0;
-background-image: repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(245,166,35,0.018) 40px, rgba(245,166,35,0.018) 41px);
-pointer-events: none;
-}
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(245,166,35,0.018) 40px, rgba(245,166,35,0.018) 41px);
+    pointer-events: none;
+  }
 
-.hero-gear { position: absolute; font-size: 500px; opacity: 0.025; right: -120px; bottom: -120px; line-height: 1; pointer-events: none; animation: slowspin 60s linear infinite; }
-.hero-gear-2 { position: absolute; font-size: 220px; opacity: 0.02; left: -50px; top: 40px; line-height: 1; pointer-events: none; animation: slowspin 40s linear infinite reverse; }
-@keyframes slowspin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .hero-gear { position: absolute; font-size: 500px; opacity: 0.025; right: -120px; bottom: -120px; line-height: 1; pointer-events: none; animation: slowspin 60s linear infinite; }
+  .hero-gear-2 { position: absolute; font-size: 220px; opacity: 0.02; left: -50px; top: 40px; line-height: 1; pointer-events: none; animation: slowspin 40s linear infinite reverse; }
+  @keyframes slowspin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-.eyebrow { font-family: ‘DM Mono’, monospace; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: #f5a623; margin-bottom: 20px; opacity: 0; animation: fadeUp 0.7s 0.1s ease forwards; }
+  .eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: #f5a623; margin-bottom: 20px; opacity: 0; animation: fadeUp 0.7s 0.1s ease forwards; }
 
-.hero-name { font-family: ‘Bebas Neue’, sans-serif; font-size: clamp(64px, 14vw, 130px); line-height: 0.9; letter-spacing: 2px; color: #e8ecf4; opacity: 0; animation: fadeUp 0.7s 0.2s ease forwards; }
-.hero-name span { display: block; color: #f5a623; }
+  .hero-name { font-family: 'Bebas Neue', sans-serif; font-size: clamp(64px, 14vw, 130px); line-height: 0.9; letter-spacing: 2px; color: #e8ecf4; opacity: 0; animation: fadeUp 0.7s 0.2s ease forwards; }
+  .hero-name span { display: block; color: #f5a623; }
 
-.hero-title { margin-top: 22px; font-size: clamp(15px, 3vw, 19px); font-weight: 300; color: #8892a4; letter-spacing: 0.5px; line-height: 1.5; opacity: 0; animation: fadeUp 0.7s 0.35s ease forwards; }
-.hero-title strong { color: #c8d0e0; font-weight: 500; }
+  .hero-title { margin-top: 22px; font-size: clamp(15px, 3vw, 19px); font-weight: 300; color: #8892a4; letter-spacing: 0.5px; line-height: 1.5; opacity: 0; animation: fadeUp 0.7s 0.35s ease forwards; }
+  .hero-title strong { color: #c8d0e0; font-weight: 500; }
 
-.hero-divider { width: 60px; height: 3px; background: linear-gradient(90deg, #f5a623, #ff8c00); margin: 28px auto; opacity: 0; animation: fadeUp 0.7s 0.45s ease forwards; }
+  .hero-divider { width: 60px; height: 3px; background: linear-gradient(90deg, #f5a623, #ff8c00); margin: 28px auto; opacity: 0; animation: fadeUp 0.7s 0.45s ease forwards; }
 
-.hero-tagline { font-size: 15px; font-style: italic; color: #8892a4; max-width: 480px; line-height: 1.7; opacity: 0; animation: fadeUp 0.7s 0.55s ease forwards; }
+  .hero-tagline { font-size: 15px; font-style: italic; color: #8892a4; max-width: 480px; line-height: 1.7; opacity: 0; animation: fadeUp 0.7s 0.55s ease forwards; }
 
-.story { background: #0d1017; max-width: 760px; margin: 0 auto; padding: 80px 24px 60px; }
+  .story { background: #0d1017; max-width: 760px; margin: 0 auto; padding: 80px 24px 60px; }
 
-.section-label { font-family: ‘DM Mono’, monospace; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: #f5a623; margin-bottom: 16px; }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: #f5a623; margin-bottom: 16px; }
 
-.story-text h2 { font-family: ‘Bebas Neue’, sans-serif; font-size: clamp(36px, 6vw, 56px); line-height: 1; letter-spacing: 1px; margin-bottom: 24px; color: #e8ecf4; }
-.story-text h2 em { color: #f5a623; font-style: normal; }
+  .story-text h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 6vw, 56px); line-height: 1; letter-spacing: 1px; margin-bottom: 24px; color: #e8ecf4; }
+  .story-text h2 em { color: #f5a623; font-style: normal; }
 
-.story-body { font-size: 16px; font-weight: 300; line-height: 1.85; color: #8892a4; }
-.story-body p + p { margin-top: 16px; }
-.story-body strong { color: #c8d0e0; font-weight: 500; }
+  .story-body { font-size: 16px; font-weight: 300; line-height: 1.85; color: #8892a4; }
+  .story-body p + p { margin-top: 16px; }
+  .story-body strong { color: #c8d0e0; font-weight: 500; }
 
-.photos { background: #0d1017; padding: 0 24px 80px; max-width: 1100px; margin: 0 auto; }
+  .photos { background: #0d1017; padding: 0 24px 80px; max-width: 1100px; margin: 0 auto; }
 
-.photo-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; align-items: stretch; }
+  .photo-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; align-items: stretch; }
 
-.photo-slot { position: relative; border-radius: 8px; overflow: hidden; background: #252b3b; border: 1.5px solid rgba(255,255,255,0.07); padding-bottom: 133%; /* 3/4 aspect ratio */ height: 0; }
+  .photo-slot { position: relative; border-radius: 8px; overflow: hidden; background: #252b3b; border: 1.5px solid rgba(255,255,255,0.07); padding-bottom: 133%; /* 3/4 aspect ratio */ height: 0; }
 
-.photo-slot img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+  .photo-slot img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
 
-.photo-slot:nth-child(1) img { object-position: center 30%; }
-.photo-slot:nth-child(2) img { object-position: center 25%; }
-.photo-slot:nth-child(3) img { object-position: center 35%; }
-.photo-slot:nth-child(4) img { object-position: center 15%; }
+  .photo-slot:nth-child(1) img { object-position: center 30%; }
+  .photo-slot:nth-child(2) img { object-position: center 25%; }
+  .photo-slot:nth-child(3) img { object-position: center 35%; }
+  .photo-slot:nth-child(4) img { object-position: center 15%; }
 
-.photo-slot::after { content: ‘’; position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,16,23,0.6) 0%, transparent 50%); pointer-events: none; z-index: 1; }
+  .photo-slot::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,16,23,0.6) 0%, transparent 50%); pointer-events: none; z-index: 1; }
 
-.photo-caption { position: absolute; bottom: 12px; left: 12px; right: 12px; font-family: ‘DM Mono’, monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.6); z-index: 2; }
+  .photo-caption { position: absolute; bottom: 12px; left: 12px; right: 12px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.6); z-index: 2; }
 
-.quote-block { background: #0d1017; max-width: 760px; margin: 0 auto; padding: 0 24px 80px; }
+  .quote-block { background: #0d1017; max-width: 760px; margin: 0 auto; padding: 0 24px 80px; }
 
-.quote-inner { background: rgba(245,166,35,0.06); border: 1.5px solid rgba(245,166,35,0.2); border-left: 4px solid #f5a623; border-radius: 8px; padding: 32px 36px; position: relative; }
+  .quote-inner { background: rgba(245,166,35,0.06); border: 1.5px solid rgba(245,166,35,0.2); border-left: 4px solid #f5a623; border-radius: 8px; padding: 32px 36px; position: relative; }
 
-.quote-mark { font-family: ‘Bebas Neue’, sans-serif; font-size: 80px; color: #f5a623; opacity: 0.15; position: absolute; top: 10px; left: 24px; line-height: 1; }
+  .quote-mark { font-family: 'Bebas Neue', sans-serif; font-size: 80px; color: #f5a623; opacity: 0.15; position: absolute; top: 10px; left: 24px; line-height: 1; }
 
-.quote-text { font-size: 18px; font-style: italic; font-weight: 300; line-height: 1.75; color: #c8d0e0; padding-left: 16px; position: relative; z-index: 1; }
+  .quote-text { font-size: 18px; font-style: italic; font-weight: 300; line-height: 1.75; color: #c8d0e0; padding-left: 16px; position: relative; z-index: 1; }
 
-.quote-attr { margin-top: 14px; font-family: ‘DM Mono’, monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #f5a623; padding-left: 16px; }
+  .quote-attr { margin-top: 14px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #f5a623; padding-left: 16px; }
 
-.cta-section { background: #0d1017; text-align: center; padding: 60px 24px 100px; border-top: 1px solid rgba(255,255,255,0.05); position: relative; }
+  .cta-section { background: #0d1017; text-align: center; padding: 60px 24px 100px; border-top: 1px solid rgba(255,255,255,0.05); position: relative; }
 
-.cta-section::before { content: ‘’; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: linear-gradient(90deg, #f5a623, #ff8c00); }
+  .cta-section::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: linear-gradient(90deg, #f5a623, #ff8c00); }
 
-.cta-label { font-family: ‘DM Mono’, monospace; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: #8892a4; margin-bottom: 20px; margin-top: 40px; }
+  .cta-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: #8892a4; margin-bottom: 20px; margin-top: 40px; }
 
-.cta-heading { font-family: ‘Bebas Neue’, sans-serif; font-size: clamp(36px, 7vw, 64px); letter-spacing: 2px; line-height: 1; margin-bottom: 16px; color: #e8ecf4; }
-.cta-heading span { color: #f5a623; }
+  .cta-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 7vw, 64px); letter-spacing: 2px; line-height: 1; margin-bottom: 16px; color: #e8ecf4; }
+  .cta-heading span { color: #f5a623; }
 
-.cta-sub { font-size: 16px; font-weight: 300; color: #8892a4; max-width: 440px; margin: 0 auto 36px; line-height: 1.7; }
+  .cta-sub { font-size: 16px; font-weight: 300; color: #8892a4; max-width: 440px; margin: 0 auto 36px; line-height: 1.7; }
 
-.btn-registry { display: inline-flex; align-items: center; gap: 12px; background: #f5a623; color: #0d1017; font-family: ‘Bebas Neue’, sans-serif; font-size: 22px; letter-spacing: 2px; padding: 18px 48px; border-radius: 6px; text-decoration: none; transition: all 0.2s; }
-.btn-registry:hover { background: #ff8c00; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(245,166,35,0.25); }
-.btn-registry .arrow { font-size: 18px; transition: transform 0.2s; }
-.btn-registry:hover .arrow { transform: translateX(4px); }
+  .btn-registry { display: inline-flex; align-items: center; gap: 12px; background: #f5a623; color: #0d1017; font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; padding: 18px 48px; border-radius: 6px; text-decoration: none; transition: all 0.2s; }
+  .btn-registry:hover { background: #ff8c00; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(245,166,35,0.25); }
+  .btn-registry .arrow { font-size: 18px; transition: transform 0.2s; }
+  .btn-registry:hover .arrow { transform: translateX(4px); }
 
-.cta-note { margin-top: 20px; font-family: ‘DM Mono’, monospace; font-size: 12px; color: #4a5568; letter-spacing: 1px; }
+  .cta-note { margin-top: 20px; font-family: 'DM Mono', monospace; font-size: 12px; color: #4a5568; letter-spacing: 1px; }
 
-.page-footer { background: #0d1017; text-align: center; padding: 24px; font-size: 12px; color: #4a5568; font-family: ‘DM Mono’, monospace; border-top: 1px solid rgba(255,255,255,0.04); }
+  .page-footer { background: #0d1017; text-align: center; padding: 24px; font-size: 12px; color: #4a5568; font-family: 'DM Mono', monospace; border-top: 1px solid rgba(255,255,255,0.04); }
 
-@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-@media (max-width: 700px) { .photo-grid { grid-template-columns: 1fr 1fr; gap: 8px; } .quote-inner { padding: 24px 20px; } }
-@media (max-width: 400px) { .photo-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 700px) { .photo-grid { grid-template-columns: 1fr 1fr; gap: 8px; } .quote-inner { padding: 24px 20px; } }
+  @media (max-width: 400px) { .photo-grid { grid-template-columns: 1fr 1fr; } }
 </style>
-
 </head>
 <body>
 <div class="page">
 
   <!-- HERO -->
-
   <section class="hero">
     <div class="hero-gear">⚙</div>
     <div class="hero-gear-2">⚙</div>
-    <div class="eyebrow">Diesel Mechanic · Class of 2026 fixed?</div>
+    <div class="eyebrow">Diesel Mechanic · Class of 2026</div>
     <h1 class="hero-name"><span>Andrew</span></h1>
     <p class="hero-title">
       <strong>Associate of Science, Diesel Mechanics</strong> &nbsp;·&nbsp; Ventura County Community College<br>
@@ -161,7 +158,6 @@ pointer-events: none;
   </section>
 
   <!-- CTA -->
-
   <section class="cta-section">
     <p class="cta-label">// Help Him Get Started</p>
     <h2 class="cta-heading">See the <span>Tool Registry</span></h2>
@@ -175,7 +171,6 @@ pointer-events: none;
   </section>
 
   <!-- STORY -->
-
   <section class="story">
     <div class="section-label">// His Journey</div>
     <div class="story-text">
@@ -198,7 +193,6 @@ pointer-events: none;
   </section>
 
   <!-- PHOTOS -->
-
   <section class="photos">
     <div class="section-label">// Andrew's Story in Photos</div>
     <div class="photo-grid">
@@ -222,7 +216,6 @@ pointer-events: none;
   </section>
 
   <!-- QUOTE -->
-
   <section class="quote-block">
     <div class="quote-inner">
       <div class="quote-mark">"</div>
